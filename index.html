@@ -1070,7 +1070,7 @@ async function initNotifications(){
     const perm = await Notification.requestPermission();
     if(perm !== 'granted') return;
     if('serviceWorker' in navigator){
-      const reg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+      const reg = await navigator.serviceWorker.register('./firebase-messaging-sw.js');
       const msg = getMessaging(FB);
       const token = await getToken(msg, {vapidKey: VAPID, serviceWorkerRegistration: reg});
       if(token) await setDoc(doc(db,'fcm_tokens',token),{token,ts:Date.now()});
@@ -2364,6 +2364,20 @@ window.toggleDarkMode = function(){
 
 // ── INIT ──
 async function init(){
+  // Unregister any old service workers from previous domains (Netlify etc)
+  if('serviceWorker' in navigator){
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for(const r of regs){
+      if(!r.scope.includes('github.io')){
+        await r.unregister();
+        console.log('Unregistered old SW:', r.scope);
+      }
+    }
+  }
+  // Register new SW
+  if('serviceWorker' in navigator){
+    try { await navigator.serviceWorker.register('./sw.js'); } catch(e){}
+  }
   await loadPrices();
   initListeners();
   await initNotifications();
