@@ -22,6 +22,18 @@
   --red:#C0392B;--rl:#FDECEA;--purple:#6B3FA0;--pl:#F2EBF9;
   --pad:18px; --pad-sm:14px;
 }
+body.dark{
+  --bg:#121212;--white:#1E1E1E;--ink:#F0EFE9;--ink2:#A8A79F;--ink3:#6B6A62;
+  --acc:#E91E8C;--ai:#fff;--al:#2D0020;--border:#2E2E2E;
+  --green:#2A7A50;--gl:#0D2B1A;--blue:#1A5FA8;--bl:#0D1E2E;
+  --red:#C0392B;--rl:#2E0C09;--purple:#6B3FA0;--pl:#1E1228;
+}
+body.dark .tgl.on{box-shadow:0 1px 6px rgba(233,30,140,0.5);}
+body.dark .stat.big{border-color:var(--acc);}
+.dm-switch{width:52px;height:28px;background:var(--border);border-radius:14px;position:relative;cursor:pointer;transition:background 0.25s;flex-shrink:0;}
+.dm-switch.on{background:var(--acc);}
+.dm-thumb{position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:left 0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.25);}
+.dm-switch.on .dm-thumb{left:27px;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;height:100dvh;}
 @media(min-width:600px){
@@ -106,6 +118,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 
 /* TOGGLE */
 .toggle{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:12px;padding:4px;gap:3px;}
+.toggle3{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg);border-radius:12px;padding:4px;gap:3px;}
 .tgl{padding:12px;border-radius:9px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;color:var(--ink2);cursor:pointer;text-align:center;transition:all 0.18s;border:none;background:transparent;min-height:46px;}
 .tgl.on{background:var(--acc);color:var(--ai);font-weight:700;box-shadow:0 1px 6px rgba(245,200,0,0.4);}
 
@@ -346,6 +359,24 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 
 /* MULTI COT */
 .mcot-item{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.mcat-section{background:var(--white);border-radius:14px;border:1.5px solid var(--border);margin-bottom:10px;overflow:hidden;}
+.mcat-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;cursor:pointer;user-select:none;}
+.mcat-title{font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.mcat-arrow{font-size:12px;color:var(--ink3);transition:transform 0.2s;}
+.mcat-section.open .mcat-arrow{transform:rotate(180deg);}
+.mcat-body{display:none;padding:0 12px 12px;}
+.mcat-section.open .mcat-body{display:block;}
+.mcat-prod{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.mcat-prod:last-child{border-bottom:none;}
+.mcat-prod-icon{font-size:20px;flex-shrink:0;}
+.mcat-prod-info{flex:1;min-width:0;}
+.mcat-prod-name{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mcat-prod-sub{font-size:11px;color:var(--ink3);}
+.mcat-prod-price{font-size:12px;font-weight:600;color:var(--acc);flex-shrink:0;text-align:right;}
+.mcat-prod-controls{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.mcat-qty{width:44px;text-align:center;border:1.5px solid var(--border);border-radius:8px;padding:5px 4px;font-size:13px;font-weight:600;background:var(--bg);}
+.mcat-add{background:var(--acc);color:#fff;border:none;border-radius:8px;width:30px;height:30px;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mcat-add:active{opacity:0.7;}
 .mcot-name{font-size:13px;font-weight:600;color:var(--ink);}
 .mcot-detail{font-size:11px;color:var(--ink3);margin-top:2px;}
 .mcot-price{font-size:15px;font-weight:700;color:var(--ink);flex-shrink:0;}
@@ -391,12 +422,17 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <div class="hub-card" onclick="goTab('stickers')">
       <div class="hub-icon">🏷️</div>
       <div class="hub-title">Stickers</div>
-      <div class="hub-sub">Adhesivo normal · Foto premium · Corte Cricut</div>
+      <div class="hub-sub">Adhesivo mate · Foto premium · Corte complejo</div>
     </div>
     <div class="hub-card" onclick="goTabInner('servicios');showSrv('dtf')">
       <div class="hub-icon">👕</div>
       <div class="hub-title">DTF</div>
       <div class="hub-sub">Playeras · Gorras · Tote bags · Polo</div>
+    </div>
+    <div class="hub-card" onclick="goTabInner('servicios');showSrv('uv')">
+      <div class="hub-icon">🖨️</div>
+      <div class="hub-title">DTF UV · Vinil</div>
+      <div class="hub-sub">Cilindro Lake · Vaso chupón · Cafetalero</div>
     </div>
     <div class="hub-card" onclick="goTabInner('servicios');showSrv('sub')">
       <div class="hub-icon">☕</div>
@@ -411,7 +447,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <div class="hub-card" onclick="goTabInner('servicios');showSrv('multi')">
       <div class="hub-icon">🧾</div>
       <div class="hub-title">Cotizacion mixta</div>
-      <div class="hub-sub">Varios productos en un pedido</div>
+      <div class="hub-sub">Selecciona aquí todos los productos</div>
     </div>
     <div class="hub-card" onclick="goTab('papeleria')">
       <div class="hub-icon">🖨️</div>
@@ -424,11 +460,19 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 <!-- STICKERS -->
 <div class="page" id="p-stickers">
   <div class="s-label" style="margin-top:0;">Material</div>
-  <div class="toggle" id="mat-tgl">
-    <button class="tgl on" data-v="normal">Adhesivo normal</button>
+  <div class="toggle3" id="mat-tgl">
+    <button class="tgl on" data-v="normal">Adhesivo mate</button>
     <button class="tgl" data-v="foto">Foto premium</button>
+    <button class="tgl" data-v="complejo">Corte complejo</button>
   </div>
-  <div class="s-label">Modo de cobro</div>
+  <div id="complejo-info" style="display:none;" class="card" style="margin-top:8px;background:var(--al);border-color:var(--acc);">
+    <div style="font-size:12px;color:var(--ink2);line-height:1.6;">
+      <strong>Corte complejo</strong> — Siluetas, personajes y formas irregulares.<br>
+      Precio mínimo <strong>$4/pza</strong> · varía según tamaño y complejidad del corte.<br>
+      Ajusta el precio por pieza manualmente en cada diseño.
+    </div>
+  </div>
+  <div class="s-label">Modo de cobro <span id="mode-hint" style="font-weight:400;font-size:9px;color:var(--ink3);text-transform:none;letter-spacing:0;">(no aplica en corte complejo)</span></div>
   <div class="toggle" id="mode-tgl">
     <button class="tgl on" data-v="pieza">Por pieza</button>
     <button class="tgl" data-v="hoja">Por hoja</button>
@@ -496,6 +540,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <div class="s-label" style="margin-top:0;">Tipo de trabajo</div>
     <div class="nav-grid" style="margin-bottom:0;">
       <div class="nav-card" onclick="showSrv('dtf')"><div class="nav-icon">👕</div><div class="nav-title">DTF</div><div class="nav-sub">Producto tuyo</div></div>
+      <div class="nav-card" onclick="showSrv('uv')"><div class="nav-icon">🖨️</div><div class="nav-title">DTF UV · Vinil</div><div class="nav-sub">Vasitos y cilindros</div></div>
       <div class="nav-card" onclick="showSrv('sub')"><div class="nav-icon">☕</div><div class="nav-title">Sublimacion</div><div class="nav-sub">Producto tuyo</div></div>
       <div class="nav-card" onclick="showSrv('cli')"><div class="nav-icon">📦</div><div class="nav-title">Solo diseno</div><div class="nav-sub">Precio libre</div></div>
       <div class="nav-card" onclick="showSrv('multi')"><div class="nav-icon">🧾</div><div class="nav-title">Cotizacion mixta</div><div class="nav-sub">Varios juntos</div></div>
@@ -546,6 +591,54 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
       <button class="btn-s" id="dtf-cot">Cotizacion WA</button>
       <button class="btn-s" onclick="addToMulti('dtf')">+ Mixta</button>
       <button class="btn-p btn-g" id="dtf-save">Guardar</button>
+    </div>
+  </div>
+
+
+  <div id="srv-uv" style="display:none;">
+    <div class="s-label" style="margin-top:0;">Producto DTF UV · Vinil</div>
+    <div class="prod-grid" id="uv-prods"></div>
+    <div class="card">
+      <div class="row2">
+        <div class="field"><div class="fl">Cantidad total</div><input class="inp ctr" type="number" min="1" value="1" id="uv-qty"></div>
+        <div class="field"><div class="fl">Nombre diseño</div><input class="inp" id="uv-nom" placeholder="Ej: Logo empresa"></div>
+      </div>
+      <div id="uv-variantes-wrap"></div>
+      <div class="field" style="margin-top:10px;"><div class="fl">Nota</div><input class="inp" id="uv-nota" placeholder="Color, fecha entrega..."></div>
+    </div>
+    <div class="card hl">
+      <div style="font-size:12px;color:var(--ink2);margin-bottom:4px;">Total estimado</div>
+      <div style="font-size:28px;font-weight:700;" id="uv-tot">$0</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:2px;" id="uv-det">Selecciona un producto</div>
+    </div>
+    <div class="s-label" style="margin-top:16px;">Forma de pago</div>
+    <div class="card" style="margin-bottom:0;">
+      <div class="pago-tipo" id="uv-pago-tipo">
+        <button class="pago-btn on" data-pago="efectivo">💵 Efectivo</button>
+        <button class="pago-btn" data-pago="tarjeta">💳 Tarjeta</button>
+        <button class="pago-btn" data-pago="transferencia">📲 Transfer</button>
+      </div>
+      <div class="row2" style="margin-bottom:10px;">
+        <div class="field"><div class="fl">Anticipo $</div><input class="inp ctr" type="number" min="0" id="uv-anticipo" placeholder="0"></div>
+        <div class="field"><div class="fl">% rapido</div>
+          <select class="inp" id="uv-pct" onchange="calcPagoWidget('uv')">
+            <option value="0">Personalizado</option>
+            <option value="50" selected>50% anticipo</option>
+            <option value="100">100% pagado</option>
+            <option value="30">30% anticipo</option>
+          </select>
+        </div>
+      </div>
+      <div class="saldo-box">
+        <div class="saldo-row"><span>Total</span><span id="uv-saldo-tot">$0</span></div>
+        <div class="saldo-row"><span>Anticipo</span><span id="uv-saldo-ant" style="color:var(--green);">-$0</span></div>
+        <div class="saldo-row"><span>Saldo al entregar</span><span id="uv-saldo-rest">$0</span></div>
+      </div>
+    </div>
+    <div class="act3" style="margin-top:14px;">
+      <button class="btn-s" id="uv-cot">Cotizacion WA</button>
+      <button class="btn-s" onclick="addToMulti('uv')">+ Mixta</button>
+      <button class="btn-p btn-g" id="uv-save">Guardar</button>
     </div>
   </div>
 
@@ -645,8 +738,15 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
   </div>
 
   <div id="srv-multi" style="display:none;">
-    <div class="s-label" style="margin-top:0;">Cotizacion mixta</div>
-    <div id="multi-items"><div class="empty">Agrega productos con el boton + Mixta.</div></div>
+    <div class="s-label" style="margin-top:0;">Productos del pedido</div>
+
+    <!-- ── CATÁLOGO COMPLETO EN SECCIONES PLEGABLES ── -->
+    <div id="multi-catalogo"></div>
+
+    <!-- ── LISTA DE ITEMS AGREGADOS ── -->
+    <div class="s-label" style="margin-top:16px;">Resumen del pedido <span id="multi-badge" style="background:var(--acc);color:#fff;border-radius:20px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:4px;display:none;">0</span></div>
+    <div id="multi-items"><div class="empty" style="padding:14px;">Selecciona productos arriba.</div></div>
+
     <div class="card hl" style="margin-top:12px;">
       <div style="font-size:12px;color:var(--ink2);margin-bottom:4px;">Total cotizacion</div>
       <div style="font-size:30px;font-weight:700;" id="multi-tot">$0</div>
@@ -832,6 +932,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
   <div class="s-label" style="margin-top:0;">Agregar nuevos productos</div>
   <div class="nav-grid" style="margin-bottom:20px;">
     <div class="nav-card" onclick="showAjustesSection('dtf-prod')"><div class="nav-icon">👕</div><div class="nav-title">Productos DTF</div><div class="nav-sub">Agregar playeras, gorras...</div></div>
+    <div class="nav-card" onclick="showAjustesSection('uv-prod')"><div class="nav-icon">🖨️</div><div class="nav-title">DTF UV · Vinil</div><div class="nav-sub">Agregar vasitos, cilindros...</div></div>
     <div class="nav-card" onclick="showAjustesSection('sub-prod')"><div class="nav-icon">☕</div><div class="nav-title">Productos Sub.</div><div class="nav-sub">Agregar tazas, termos...</div></div>
     <div class="nav-card" onclick="showAjustesSection('pap-prod')"><div class="nav-icon">🖨️</div><div class="nav-title">Tipos de papel</div><div class="nav-sub">Agregar nuevos papeles</div></div>
     <div class="nav-card" onclick="showAjustesSection('stk-sizes')"><div class="nav-icon">🏷️</div><div class="nav-title">Medidas stickers</div><div class="nav-sub">Agregar nuevas medidas</div></div>
@@ -846,6 +947,17 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
       <div class="row2"><div class="field"><div class="fl">Descripcion</div><input class="inp" id="aj-dtf-desc" placeholder="Ej: Sudadera algodon"></div><div class="field"><div class="fl">Tallas</div><select class="inp" id="aj-dtf-tallas"><option value="ropa">Ropa (CH-XXXL)</option><option value="gorras">Gorras</option><option value="unica">Talla unica</option></select></div></div>
       <div class="row2"><div class="field"><div class="fl">Precio unitario $</div><input class="inp ctr" type="number" id="aj-dtf-u" placeholder="0"></div><div class="field"><div class="fl">Precio mayoreo $</div><input class="inp ctr" type="number" id="aj-dtf-m" placeholder="0"></div></div>
       <button class="btn-p" onclick="saveNewProd('dtf')">Agregar producto DTF</button>
+    </div>
+  </div>
+
+  <div id="aj-uv-prod" style="display:none;">
+    <div class="s-label" style="margin-top:0;">Productos DTF UV · Vinil <span style="cursor:pointer;color:var(--acc);" onclick="showAjustesSection('main')">← volver</span></div>
+    <div id="aj-uv-list"></div>
+    <div class="card">
+      <div class="row2"><div class="field"><div class="fl">Nombre</div><input class="inp" id="aj-uv-name" placeholder="Ej: Vaso 600ml"></div><div class="field"><div class="fl">Icono emoji</div><input class="inp ctr" id="aj-uv-icon" placeholder="🥤" maxlength="2"></div></div>
+      <div class="row2"><div class="field"><div class="fl">Descripcion</div><input class="inp" id="aj-uv-desc" placeholder="Ej: Plastico UV"></div><div class="field"><div class="fl">Tallas</div><select class="inp" id="aj-uv-tallas"><option value="vasos">Vasos/ml</option><option value="unica">Talla unica</option></select></div></div>
+      <div class="row2"><div class="field"><div class="fl">Precio unitario $</div><input class="inp ctr" type="number" id="aj-uv-u" placeholder="0"></div><div class="field"><div class="fl">Precio mayoreo $</div><input class="inp ctr" type="number" id="aj-uv-m" placeholder="0"></div></div>
+      <button class="btn-p" onclick="saveNewProd('uv')">Agregar producto UV · Vinil</button>
     </div>
   </div>
 
@@ -883,12 +995,15 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
   <div id="aj-main">
   <div class="s-label" style="margin-top:0;">Precios stickers</div>
   <div class="pr-box">
-    <div class="pr-head"><span>Tamano</span><span>Normal $</span><span>Foto $</span></div>
-    <div class="pe-row" style="background:var(--bg);"><span class="pe-sz">Hoja A4 completa</span><input class="pe-inp" type="number" id="ph-n" value="35" min="1"><input class="pe-inp" type="number" id="ph-f" value="45" min="1"></div>
+    <div class="pr-head"><span>Tamano</span><span>Mate $</span><span>Foto $</span></div>
+    <div class="pe-row" style="background:var(--bg);"><span class="pe-sz">Hoja A4 completa (mate / foto)</span><input class="pe-inp" type="number" id="ph-n" value="35" min="1"><input class="pe-inp" type="number" id="ph-f" value="45" min="1"></div>
+    <div class="pe-row pe-row2" style="background:var(--bg);"><span class="pe-sz">Corte complejo — precio min/pza $</span><input class="pe-inp" type="number" id="ph-c" value="4" min="1"></div>
     <div id="pe-stk"></div>
   </div>
   <div class="s-label">DTF</div>
   <div class="pr-box"><div class="pr-head"><span>Producto</span><span>Unit. $</span><span>Mayo. $</span></div><div id="pe-dtf"></div></div>
+  <div class="s-label">DTF UV · Vinil</div>
+  <div class="pr-box"><div class="pr-head"><span>Producto</span><span>Unit. $</span><span>Mayo. $</span></div><div id="pe-uv"></div></div>
   <div class="s-label">Sublimacion</div>
   <div class="pr-box"><div class="pr-head"><span>Producto</span><span>Unit. $</span><span>Mayo. $</span></div><div id="pe-sub"></div></div>
   <div class="s-label">Papeleria</div>
@@ -897,6 +1012,20 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
   <div class="pr-box pr-head2"><div class="pr-head pr-head2"><span>Producto</span><span>Precio $</span></div><div id="pe-col"></div></div>
   <button class="btn-p" id="save-prices" style="margin-top:8px;">Guardar todos los precios</button>
   <p class="save-note">Se guardan en la nube y sincronizan entre dispositivos</p>
+
+  <div class="s-label" style="margin-top:28px;">Apariencia</div>
+  <div class="card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:24px;" id="dark-mode-icon">🌙</span>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--ink);" id="dark-mode-label">Modo oscuro</div>
+        <div style="font-size:11px;color:var(--ink3);">Cambia el tema de la app</div>
+      </div>
+    </div>
+    <div class="dm-switch" id="dm-switch" onclick="toggleDarkMode()">
+      <div class="dm-thumb" id="dm-thumb"></div>
+    </div>
+  </div>
   </div><!-- /aj-main -->
 </div>
 
@@ -975,6 +1104,7 @@ const STICKER_SIZES=[
 const TALLAS_ROPA=['CH','S','M','G','L','XG','XL','XXL','XXXL','Unica'];
 const TALLAS_VASO=['500ml','600ml','750ml','850ml','1L','11oz','16oz','470ml','Unica'];
 const TALLAS_GORRA=['Adulto','Juvenil','Infantil','Unica'];
+const TALLAS_ROPA_INF=['CH inf','M inf','G inf'];
 
 const DTF_PRODS=[
   {key:'play1',icon:'👕',name:'Playera 1 lado',sub:'Cuello redondo algodon',u:185,m:160,tallas:TALLAS_ROPA},
@@ -983,6 +1113,13 @@ const DTF_PRODS=[
   {key:'polo2',icon:'👔',name:'Polo 2 lados',sub:'Polo frente y espalda',u:240,m:215,tallas:TALLAS_ROPA},
   {key:'gorra_d',icon:'🧢',name:'Gorra DTF',sub:'Transfer sobre gorra',u:80,m:65,tallas:TALLAS_GORRA},
   {key:'tote_d',icon:'👜',name:'Tote bag',sub:'Transfer sobre bolsa',u:80,m:65,tallas:['Unica']},
+  {key:'play_inf1',icon:'👕',name:'Playera inf. 1 lado',sub:'Tela infantil · CH/M/G inf',u:155,m:135,tallas:TALLAS_ROPA_INF},
+  {key:'play_inf2',icon:'👕',name:'Playera inf. 2 lados',sub:'Frente y espalda · infantil',u:195,m:170,tallas:TALLAS_ROPA_INF},
+];
+const UV_PRODS=[
+  {key:'cil_l',icon:'🍶',name:'Cilindro Lake',sub:'850ml plastico UV',u:95,m:75,tallas:TALLAS_VASO},
+  {key:'vaso_ch',icon:'🥤',name:'Vaso chupon',sub:'500ml plastico UV',u:45,m:35,tallas:TALLAS_VASO},
+  {key:'vaso_ca',icon:'☕',name:'Vaso cafetalero',sub:'16oz plastico UV',u:75,m:60,tallas:TALLAS_VASO},
 ];
 const SUB_PRODS=[
   {key:'taza_b',icon:'☕',name:'Taza blanca',sub:'11oz ceramica',u:45,m:39,tallas:['11oz']},
@@ -991,9 +1128,7 @@ const SUB_PRODS=[
   {key:'taza_m',icon:'🌙',name:'Taza magica',sub:'Cambia color',u:68,m:60,tallas:['11oz']},
   {key:'taza_dc',icon:'🎨',name:'Taza doble color',sub:'11oz ceramica',u:51,m:45,tallas:['11oz']},
   {key:'gorra_s',icon:'🧢',name:'Gorra sublimable',sub:'Red transpirable',u:70,m:48,tallas:TALLAS_GORRA},
-  {key:'cil_l',icon:'🍶',name:'Cilindro Lake',sub:'850ml plastico',u:95,m:75,tallas:TALLAS_VASO},
-  {key:'vaso_ch',icon:'🥤',name:'Vaso chupon',sub:'500ml plastico',u:45,m:35,tallas:TALLAS_VASO},
-  {key:'vaso_ca',icon:'☕',name:'Vaso cafetalero',sub:'16oz plastico',u:75,m:60,tallas:TALLAS_VASO},
+
   {key:'jarra',icon:'🫙',name:'Jarra viajera',sub:'470ml acero',u:198,m:178,tallas:TALLAS_VASO},
   {key:'tarro',icon:'🍺',name:'Tarro cervecero',sub:'16oz cristal',u:155,m:130,tallas:TALLAS_VASO},
   {key:'cil_al',icon:'🧴',name:'Cilindro aluminio',sub:'600ml aluminio',u:135,m:110,tallas:TALLAS_VASO},
@@ -1017,7 +1152,7 @@ const PAPEL_TIPOS=[
 ];
 
 const MAYOREO = 12;
-let PIEZA={}, HOJA={normal:35,foto:45}, DTF_PR={}, SUB_PR={}, PAP_PR={}, COL_PR={};
+let PIEZA={}, HOJA={normal:35,foto:45,complejo:4}, DTF_PR={}, SUB_PR={}, PAP_PR={}, COL_PR={};
 STICKER_SIZES.forEach(s=>PIEZA[s.key]={normal:5,foto:8});
 PIEZA['3x3']={normal:2,foto:4};PIEZA['4x4']={normal:3,foto:5};PIEZA['5x5']={normal:5,foto:8};
 PIEZA['6x6']={normal:6,foto:10};PIEZA['7x7']={normal:8,foto:13};PIEZA['8x8']={normal:10,foto:16};
@@ -1025,11 +1160,13 @@ PIEZA['9x9']={normal:12,foto:18};PIEZA['10x10']={normal:14,foto:22};PIEZA['12x12
 PIEZA['15x15']={normal:25,foto:38};PIEZA['5x7']={normal:6,foto:10};PIEZA['6x9']={normal:8,foto:13};
 PIEZA['10x15']={normal:22,foto:35};PIEZA['c5']={normal:5,foto:9};PIEZA['c8']={normal:10,foto:16};PIEZA['c10']={normal:14,foto:22};
 DTF_PRODS.forEach(p=>DTF_PR[p.key]={u:p.u,m:p.m});
+let UV_PR={};
+UV_PRODS.forEach(p=>UV_PR[p.key]={u:p.u,m:p.m});
 SUB_PRODS.forEach(p=>SUB_PR[p.key]={u:p.u,m:p.m});
 PAPEL_TIPOS.forEach(p=>PAP_PR[p.key]={u1:p.u,u2:p.u2});
 
 let pedidos=[], colInv=[], colVentas=[], multiItems=[];
-let selectedDtf=null, selectedSub=null, selectedCli=null, selectedPapel=null;
+let selectedDtf=null, selectedSub=null, selectedUv=null, selectedCli=null, selectedPapel=null;
 let mat='normal', mode='pieza', stkUid=1, designs=[];
 
 // Load prices from Firestore
@@ -1041,6 +1178,7 @@ async function loadPrices(){
       if(p.pieza) PIEZA=p.pieza;
       if(p.hoja) HOJA=p.hoja;
       if(p.dtf) DTF_PR=p.dtf;
+      if(p.uv) UV_PR=p.uv;
       if(p.sub) SUB_PR=p.sub;
       if(p.papel) PAP_PR=p.papel;
     }
@@ -1132,19 +1270,19 @@ function custPer(w,h){return Math.max(Math.floor(21/w)*Math.floor(29.7/h),1);}
 function getSz(d){return STICKER_SIZES.find(s=>s.key===d.sizeKey);}
 function getPer(d){if(d.sizeType==='custom'){if(!d.cw||!d.ch)return 1;return custPer(d.cw,d.ch);}return getSz(d)?.per||1;}
 function getSheets(d){return Math.ceil(d.qty/getPer(d));}
-function getUp(d){if(d.sizeType==='custom'){if(!d.cw||!d.ch)return PIEZA['8x8'][mat];return custPrice(d.cw,d.ch,mat);}return PIEZA[d.sizeKey]?.[mat]||PIEZA['8x8'][mat];}
+function getUp(d){if(mat==='complejo')return Math.max(d.complejoPrecio||4,4);if(d.sizeType==='custom'){if(!d.cw||!d.ch)return PIEZA['8x8'][mat];return custPrice(d.cw,d.ch,mat);}return PIEZA[d.sizeKey]?.[mat]||PIEZA['8x8'][mat];}
 function getSzL(d){if(d.sizeType==='custom')return(d.cw&&d.ch)?d.cw+'×'+d.ch+' cm':'custom';return getSz(d)?.label||d.sizeKey;}
 
 ['mat-tgl','mode-tgl'].forEach(id=>{
   document.getElementById(id).addEventListener('click',e=>{
     const b=e.target.closest('.tgl');if(!b)return;
     document.querySelectorAll('#'+id+' .tgl').forEach(x=>x.classList.remove('on'));
-    b.classList.add('on');if(id==='mat-tgl')mat=b.dataset.v;else mode=b.dataset.v;
+    b.classList.add('on');if(id==='mat-tgl'){mat=b.dataset.v;const ci=document.getElementById('complejo-info');if(ci)ci.style.display=mat==='complejo'?'block':'none';const mt=document.getElementById('mode-tgl');if(mt){mt.style.opacity=mat==='complejo'?'0.4':'1';mt.style.pointerEvents=mat==='complejo'?'none':'auto';}if(mat==='complejo'){mode='pieza';const pb=document.querySelector('#mode-tgl .tgl[data-v="pieza"]');document.querySelectorAll('#mode-tgl .tgl').forEach(x=>x.classList.remove('on'));if(pb)pb.classList.add('on');}}else mode=b.dataset.v;
     renderDesigns();calcStk();
   });
 });
 
-function addDesign(){designs.push({id:stkUid++,name:'',sizeType:'preset',sizeKey:'8x8',qty:10,cw:0,ch:0});renderDesigns();calcStk();}
+function addDesign(){designs.push({id:stkUid++,name:'',sizeType:'preset',sizeKey:'8x8',qty:10,cw:0,ch:0,complejoPrecio:4});renderDesigns();calcStk();}
 function removeDesign(id){designs=designs.filter(d=>d.id!==id);renderDesigns();calcStk();}
 
 function renderDesigns(){
@@ -1158,11 +1296,15 @@ function renderDesigns(){
     else if(d.sizeType==='circle') szH=`<div><div class="fl">Medida circular</div><select class="inp" data-id="${d.id}" data-f="sizeKey">${cOpts}</select></div>`;
     else szH=`<div><div class="fl">Medida (cm)</div><div class="inp-row"><input class="inp ctr" type="number" min="0.5" max="20" step="0.5" placeholder="Ancho" value="${d.cw||''}" data-id="${d.id}" data-f="cw"><span class="inp-sep">×</span><input class="inp ctr" type="number" min="0.5" max="29" step="0.5" placeholder="Alto" value="${d.ch||''}" data-id="${d.id}" data-f="ch"></div></div>`;
     const c=document.createElement('div');c.className='card';
-    c.innerHTML=`<div class="row2"><div><div class="fl">Nombre</div><input class="inp" type="text" placeholder="Diseno" value="${d.name}" data-id="${d.id}" data-f="name"></div><div><div class="fl">Cantidad</div><input class="inp ctr" type="number" min="1" value="${d.qty}" data-id="${d.id}" data-f="qty"></div></div><div class="size-type"><button class="st-btn${d.sizeType==='preset'?' on':''}" data-id="${d.id}" data-st="preset">Estandar</button><button class="st-btn${d.sizeType==='custom'?' on':''}" data-id="${d.id}" data-st="custom">Custom</button><button class="st-btn${d.sizeType==='circle'?' on':''}" data-id="${d.id}" data-st="circle">Circular</button></div><div class="row2">${szH}<div><div class="fl">Ref.</div><input class="inp ctr" value="${per} pzas/h · ${sheets} hoja${sheets>1?'s':''}" readonly style="color:var(--ink3);font-size:11px;cursor:default;"></div></div><div class="card-footer"><span class="price-lbl">$${up}/pza | Sub: <strong>$${lt.toLocaleString('es-MX')}</strong></span><button class="btn-rm" data-id="${d.id}">×</button></div>`;
+    const compPriceH=mat==='complejo'?`<div class="row2" style="margin-top:10px;"><div class="field full"><div class="fl">Precio por pieza $ <span style="color:var(--ink3);font-weight:400;">(min $4 · ajusta según complejidad)</span></div><input class="inp ctr" type="number" min="4" step="1" value="${d.complejoPrecio||4}" data-id="${d.id}" data-f="complejoPrecio" style="max-width:140px;"></div></div>`:'';
+    const sizeSection=mat==='complejo'?'':`<div class="size-type"><button class="st-btn${d.sizeType==='preset'?' on':''}" data-id="${d.id}" data-st="preset">Estandar</button><button class="st-btn${d.sizeType==='custom'?' on':''}" data-id="${d.id}" data-st="custom">Custom</button><button class="st-btn${d.sizeType==='circle'?' on':''}" data-id="${d.id}" data-st="circle">Circular</button></div><div class="row2">${szH}<div><div class="fl">Ref.</div><input class="inp ctr" value="${per} pzas/h · ${sheets} hoja${sheets>1?'s':''}" readonly style="color:var(--ink3);font-size:11px;cursor:default;"></div></div>`;
+    c.innerHTML=`<div class="row2"><div><div class="fl">Nombre</div><input class="inp" type="text" placeholder="Diseno" value="${d.name}" data-id="${d.id}" data-f="name"></div><div><div class="fl">Cantidad</div><input class="inp ctr" type="number" min="1" value="${d.qty}" data-id="${d.id}" data-f="qty"></div></div>${sizeSection}${compPriceH}<div class="card-footer"><span class="price-lbl">$${up}/pza | Sub: <strong>$${lt.toLocaleString('es-MX')}</strong></span><button class="btn-rm" data-id="${d.id}">×</button></div>`;
     el.appendChild(c);
   });
   el.querySelectorAll('.st-btn').forEach(b=>b.addEventListener('click',()=>{const id=+b.dataset.id,st=b.dataset.st,d=designs.find(x=>x.id===id);if(!d)return;d.sizeType=st;if(st==='preset')d.sizeKey='8x8';if(st==='circle')d.sizeKey='c5';if(st==='custom'){d.cw=5;d.ch=5;}renderDesigns();calcStk();}));
-  el.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',e=>{const id=+e.target.dataset.id,f=e.target.dataset.f,d=designs.find(x=>x.id===id);if(!d)return;if(f==='qty')d[f]=Math.max(1,parseInt(e.target.value)||1);else if(f==='cw'||f==='ch')d[f]=parseFloat(e.target.value)||0;else d[f]=e.target.value;calcStk();renderDesigns();}));
+  el.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',e=>{const id=+e.target.dataset.id,f=e.target.dataset.f,d=designs.find(x=>x.id===id);if(!d)return;if(f==='qty')d[f]=Math.max(1,parseInt(e.target.value)||1);else if(f==='cw'||f==='ch')d[f]=parseFloat(e.target.value)||0;else if(f==='complejoPrecio')d[f]=Math.max(4,parseFloat(e.target.value)||4);else d[f]=e.target.value;calcStk();/* NO llamar renderDesigns() aqui — destruye el foco del input */}));
+  /* Actualizar refs visuales (pzas/hoja) al perder foco, sin matar el input activo */
+  el.querySelectorAll('input[data-f="qty"],input[data-f="cw"],input[data-f="ch"]').forEach(i=>i.addEventListener('change',()=>renderDesigns()));
   el.querySelectorAll('.btn-rm').forEach(b=>b.addEventListener('click',()=>removeDesign(+b.dataset.id)));
 }
 document.getElementById('btn-add-stk').addEventListener('click',addDesign);
@@ -1174,8 +1316,8 @@ function calcStk(){
   designs.forEach(d=>{
     const per=getPer(d),sheets=getSheets(d),up=getUp(d);
     totalP+=d.qty;totalH+=sheets;
-    const lp=mode==='pieza'?d.qty*up:sheets*HOJA[mat];
-    bdRows.push({name:d.name||'Diseno '+d.id,size:getSzL(d),desc:mode==='pieza'?`${d.qty}pzs × $${up}`:`${sheets} hojas × $${HOJA[mat]}`,total:lp,qty:d.qty});
+    const lp=(mode==='pieza'||mat==='complejo')?d.qty*up:sheets*HOJA[mat];
+    bdRows.push({name:d.name||'Diseno '+d.id,size:mat==='complejo'?'Corte complejo':getSzL(d),desc:(mode==='pieza'||mat==='complejo')?`${d.qty}pzs × $${up}`:`${sheets} hojas × $${HOJA[mat]}`,total:lp,qty:d.qty});
     const sz=getSz(d);
     for(let s=0;s<sheets;s++){const f=s<sheets-1?per:d.qty-s*per;sv.push({name:d.name||'D'+d.id,n:s+1,total:sheets,cols:sz?sz.cols:Math.floor(21/(d.cw||5)),rows:sz?sz.rows:Math.floor(29.7/(d.ch||5)),filled:f,shape:d.sizeType==='circle'?'circle':'rect'});}
   });
@@ -1262,13 +1404,13 @@ document.getElementById('sk-cot').addEventListener('click',()=>{
   if(stkCalc.bdRows.length===0){toast('Agrega disenos primero.');return;}
   const cli=document.getElementById('sk-cli').value||'Cliente';
   const lineas=stkCalc.bdRows.map(r=>`${r.name} (${r.size}) ×${r.qty} = $${r.total.toLocaleString('es-MX')}`);
-  shareWA(buildCotWA(cli,document.getElementById('sk-tel').value,'Stickers',lineas,stkCalc.sub,document.getElementById('sk-nota').value,genFolio()));
+  const stkTipo='Stickers '+(stkCalc.mat==='normal'?'Adhesivo mate':stkCalc.mat==='foto'?'Foto premium':'Corte complejo');shareWA(buildCotWA(cli,document.getElementById('sk-tel').value,stkTipo,lineas,stkCalc.sub,document.getElementById('sk-nota').value,genFolio()));
 });
 document.getElementById('sk-wa').addEventListener('click',()=>{
   if(stkCalc.bdRows.length===0){toast('Agrega disenos primero.');return;}
   const cli=document.getElementById('sk-cli').value||'Cliente';
   const lineas=stkCalc.bdRows.map(r=>`${r.name} (${r.size}) ×${r.qty} = $${r.total.toLocaleString('es-MX')}`);
-  shareWA(buildListoWA(cli,document.getElementById('sk-tel').value,'Stickers',lineas,stkCalc.sub,document.getElementById('sk-nota').value,genFolio()));
+  const stkTipoL='Stickers '+(stkCalc.mat==='normal'?'Adhesivo mate':stkCalc.mat==='foto'?'Foto premium':'Corte complejo');shareWA(buildListoWA(cli,document.getElementById('sk-tel').value,stkTipoL,lineas,stkCalc.sub,document.getElementById('sk-nota').value,genFolio()));
 });
 document.getElementById('sk-save').addEventListener('click',async()=>{
   if(stkCalc.bdRows.length===0){toast('Agrega disenos primero.');return;}
@@ -1277,7 +1419,7 @@ document.getElementById('sk-save').addEventListener('click',async()=>{
   const anticipo=parseFloat(document.getElementById('sk-anticipo')?.value||'0')||0;
   const saldo=Math.max(0,stkCalc.sub-anticipo);
   const id=genId();
-  await setDoc(doc(db,'pedidos',id),{id,folio:genFolio(),fecha:new Date().toISOString(),cliente:cli,tel:document.getElementById('sk-tel').value,nota:document.getElementById('sk-nota').value,tipo:'Stickers',detalle:stkCalc.bdRows.map(r=>r.name+' ×'+r.qty).join(', '),total:stkCalc.sub,status:'pendiente',pago:{tipo:stkPagoTipo,anticipo,saldo,pagado:saldo===0}});
+  await setDoc(doc(db,'pedidos',id),{id,folio:genFolio(),fecha:new Date().toISOString(),cliente:cli,tel:document.getElementById('sk-tel').value,nota:document.getElementById('sk-nota').value,tipo:'Stickers '+(stkCalc.mat==='normal'?'Mate':stkCalc.mat==='foto'?'Foto':'Complejo'),detalle:stkCalc.bdRows.map(r=>r.name+' ×'+r.qty).join(', '),total:stkCalc.sub,status:'pendiente',pago:{tipo:stkPagoTipo,anticipo,saldo,pagado:saldo===0}});
   toast(anticipo>0?`<strong>Pedido guardado</strong> · Anticipo $${anticipo.toLocaleString('es-MX')} · Saldo $${saldo.toLocaleString('es-MX')}`:`<strong>Pedido guardado</strong> y sincronizado`);
   document.getElementById('sk-cli').value='';document.getElementById('sk-tel').value='';document.getElementById('sk-nota').value='';
   if(document.getElementById('sk-anticipo')) document.getElementById('sk-anticipo').value='';
@@ -1285,27 +1427,29 @@ document.getElementById('sk-save').addEventListener('click',async()=>{
 
 // ── SERVICIOS ──
 window.showSrv = function(w){
-  ['home','dtf','sub','cli','multi'].forEach(x=>document.getElementById('srv-'+x).style.display='none');
+  ['home','dtf','uv','sub','cli','multi'].forEach(x=>document.getElementById('srv-'+x).style.display='none');
   document.getElementById('srv-'+w).style.display='block';
   updateFloatNav(w==='home'?'hub':'servicios');
   if(w==='dtf'){renderProdGrid('dtf-prods',DTF_PRODS,()=>selectedDtf,'dtf');renderVariantes('dtf-variantes-wrap',DTF_PRODS.find(p=>p.key===selectedDtf)?.tallas||TALLAS_ROPA);}
+  if(w==='uv'){renderProdGrid('uv-prods',UV_PRODS,()=>selectedUv,'uv');renderVariantes('uv-variantes-wrap',UV_PRODS.find(p=>p.key===selectedUv)?.tallas||TALLAS_VASO);}
   if(w==='sub'){renderProdGrid('sub-prods',SUB_PRODS,()=>selectedSub,'sub');renderVariantes('sub-variantes-wrap',SUB_PRODS.find(p=>p.key===selectedSub)?.tallas||[]);}
   if(w==='cli'){renderProdGrid('cli-tipos',CLI_TIPOS,()=>selectedCli,'cli');renderVariantes('cli-variantes-wrap',CLI_TIPOS.find(p=>p.key===selectedCli)?.tallas||TALLAS_ROPA);}
-  if(w==='multi') renderMulti();
+  if(w==='multi'){renderMultiCatalogo();renderMulti();}
 };
 
 function renderProdGrid(elId, prods, getSelected, tipo){
   const el=document.getElementById(elId);el.innerHTML='';
   prods.forEach(p=>{
-    const pr=tipo==='dtf'?DTF_PR[p.key]:tipo==='sub'?SUB_PR[p.key]:null;
+    const pr=tipo==='dtf'?DTF_PR[p.key]:tipo==='uv'?UV_PR[p.key]:tipo==='sub'?SUB_PR[p.key]:null;
     const div=document.createElement('div');div.className='prod-card'+(getSelected()===p.key?' on':'');
     div.innerHTML=`<div class="prod-icon">${p.icon}</div><div class="prod-name">${p.name}</div><div class="prod-sub">${p.sub}</div>${pr?`<div class="prod-prices"><span class="pp">$${pr.u}</span><span class="pp mayo">Mayo $${pr.m}</span></div>`:''}`;
     div.addEventListener('click',()=>{
       if(tipo==='dtf'){selectedDtf=p.key;renderVariantes('dtf-variantes-wrap',p.tallas||TALLAS_ROPA);}
+      if(tipo==='uv'){selectedUv=p.key;renderVariantes('uv-variantes-wrap',p.tallas||TALLAS_VASO);}
       if(tipo==='sub'){selectedSub=p.key;renderVariantes('sub-variantes-wrap',p.tallas||[]);}
       if(tipo==='cli'){selectedCli=p.key;renderVariantes('cli-variantes-wrap',p.tallas||TALLAS_ROPA);}
       renderProdGrid(elId,prods,getSelected,tipo);
-      if(tipo==='dtf')calcDtf();if(tipo==='sub')calcSub();if(tipo==='cli')calcCli();
+      if(tipo==='dtf')calcDtf();if(tipo==='uv')calcUv();if(tipo==='sub')calcSub();if(tipo==='cli')calcCli();
     });
     el.appendChild(div);
   });
@@ -1323,6 +1467,18 @@ function calcDtf(){
   calcPagoWidget('dtf',tot);
 }
 document.getElementById('dtf-qty').addEventListener('input',calcDtf);
+function calcUv(){
+  const p=UV_PRODS.find(x=>x.key===selectedUv);
+  if(!p){document.getElementById('uv-tot').textContent='$0';document.getElementById('uv-det').textContent='Selecciona un producto';return;}
+  const pr=UV_PR[p.key]||{u:p.u,m:p.m};
+  const qty=parseInt(document.getElementById('uv-qty').value)||1;
+  const mayo=qty>=MAYOREO;const base=mayo?pr.m:pr.u;
+  const tot=qty*base;
+  document.getElementById('uv-tot').textContent='$'+tot.toLocaleString('es-MX');
+  document.getElementById('uv-det').textContent=`${qty} pzas × $${base} · ${mayo?'Mayoreo':'Unitario'}`;
+  calcPagoWidget('uv',tot);
+}
+
 
 function calcSub(){
   const p=SUB_PRODS.find(x=>x.key===selectedSub);
@@ -1335,6 +1491,7 @@ function calcSub(){
   document.getElementById('sub-det').textContent=`${qty} pzas × $${base} · ${mayo?'Mayoreo':'Unitario'}`;
   calcPagoWidget('sub',stot);
 }
+document.getElementById('uv-qty').addEventListener('input',calcUv);
 document.getElementById('sub-qty').addEventListener('input',calcSub);
 
 function calcCli(){
@@ -1357,6 +1514,14 @@ function getSrvData(tipo){
     const mayo=qty>=MAYOREO;const base=mayo?pr.m:pr.u;
     const vars=getVariantes('dtf-variantes-wrap');
     return{tipo:'DTF',prod:p.name,nombre:document.getElementById('dtf-nom').value||p.name,qty,total:qty*base,nota:document.getElementById('dtf-nota').value,variantes:vars,varStr:variantesStr(vars)};
+  }
+  if(tipo==='uv'){
+    const p=UV_PRODS.find(x=>x.key===selectedUv);if(!p)return null;
+    const pr=UV_PR[p.key]||{u:p.u,m:p.m};
+    const qty=parseInt(document.getElementById('uv-qty').value)||1;
+    const mayo=qty>=MAYOREO;const base=mayo?pr.m:pr.u;
+    const vars=getVariantes('uv-variantes-wrap');
+    return{tipo:'DTF UV · Vinil',prod:p.name,nombre:document.getElementById('uv-nom').value||p.name,qty,total:qty*base,nota:document.getElementById('uv-nota').value,variantes:vars,varStr:variantesStr(vars)};
   }
   if(tipo==='sub'){
     const p=SUB_PRODS.find(x=>x.key===selectedSub);if(!p)return null;
@@ -1394,26 +1559,226 @@ function sendSrvCot(tipo){
 
 document.getElementById('dtf-save').addEventListener('click',()=>saveSrvPed('dtf'));
 document.getElementById('sub-save').addEventListener('click',()=>saveSrvPed('sub'));
+document.getElementById('uv-save').addEventListener('click',()=>saveSrvPed('uv'));
 document.getElementById('cli-save').addEventListener('click',()=>saveSrvPed('cli'));
 document.getElementById('dtf-cot').addEventListener('click',()=>sendSrvCot('dtf'));
+document.getElementById('uv-cot').addEventListener('click',()=>sendSrvCot('uv'));
 document.getElementById('sub-cot').addEventListener('click',()=>sendSrvCot('sub'));
 document.getElementById('cli-cot').addEventListener('click',()=>sendSrvCot('cli'));
 
 window.addToMulti = function(tipo){
   const d=getSrvData(tipo);if(!d){toast('Selecciona un producto primero.');return;}
-  multiItems.push({...d,id:Date.now()});
+  // Agregar precioTag y mayoreoTag para el desglose
+  let mayoreoTag='',precioTag='';
+  if(tipo==='dtf'||tipo==='uv'||tipo==='sub'){
+    const prs=tipo==='dtf'?DTF_PR:tipo==='uv'?UV_PR:SUB_PR;
+    const prods=tipo==='dtf'?DTF_PRODS:tipo==='uv'?UV_PRODS:SUB_PRODS;
+    const p=prods.find(x=>x.name===d.prod||x.key===(tipo==='dtf'?selectedDtf:tipo==='uv'?selectedUv:selectedSub));
+    if(p){const pr2=prs[p.key]||{u:p.u,m:p.m};const mayo=d.qty>=MAYOREO;mayoreoTag=mayo?'Mayoreo':'Unitario';precioTag='$'+(mayo?pr2.m:pr2.u)+'/pza';}
+  }
+  multiItems.push({...d,id:Date.now(),mayoreoTag,precioTag});
   showSrv('multi');
 };
 
+// ── CATÁLOGO COMPLETO PARA MULTI ──
+function renderMultiCatalogo(){
+  const wrap=document.getElementById('multi-catalogo');
+  if(!wrap)return;
+
+  // ── Secciones estándar: DTF, UV, SUB ──
+  // tipo especial 'sticker' y 'papel' tienen lógica propia
+  const sections=[
+    {label:'👕 DTF — Playeras y ropa',prods:DTF_PRODS,pr:DTF_PR,tipo:'DTF'},
+    {label:'🖨️ DTF UV · Vinil',prods:UV_PRODS,pr:UV_PR,tipo:'DTF UV · Vinil'},
+    {label:'☕ Sublimacion',prods:SUB_PRODS,pr:SUB_PR,tipo:'Sublimacion'},
+    {label:'🏷️ Stickers',prods:null,pr:null,tipo:'sticker'},
+    {label:'📄 Impresion en papel',prods:PAPEL_TIPOS,pr:PAP_PR,tipo:'papel'},
+  ];
+
+  wrap.innerHTML='';
+  sections.forEach((sec,si)=>{
+    const sec_el=document.createElement('div');
+    sec_el.className='mcat-section'+(si===0?' open':'');
+    let body_html='';
+
+    // ── STICKERS: material × tamaño preset ──
+    if(sec.tipo==='sticker'){
+      const mats=[{v:'normal',label:'Adhesivo mate'},{v:'foto',label:'Foto premium'},{v:'complejo',label:'Corte complejo'}];
+      mats.forEach(mt=>{
+        if(mt.v==='complejo'){
+          // Corte complejo: precio libre, tamaño libre
+          body_html+=`<div class="mcat-prod" data-pkey="complejo" data-tipo="sticker" data-mat="complejo">
+            <div class="mcat-prod-icon">✂️</div>
+            <div class="mcat-prod-info">
+              <div class="mcat-prod-name">Corte complejo</div>
+              <div class="mcat-prod-sub">Siluetas · precio por pieza</div>
+            </div>
+            <div class="mcat-prod-price" id="mcat-pr-stk-complejo">$4/pza</div>
+            <div class="mcat-prod-controls" style="gap:4px;">
+              <input class="mcat-qty" type="number" min="1" value="10" id="mcat-qty-stk-complejo" style="width:40px;">
+              <input class="mcat-qty" type="number" min="4" value="4" id="mcat-ppu-stk-complejo" placeholder="$/pza" title="Precio por pieza" style="width:44px;">
+              <button class="mcat-add" data-pkey="complejo" data-mat="complejo" data-tipo="sticker">+</button>
+            </div>
+          </div>`;
+        } else {
+          // Adhesivo mate / Foto premium: mostrar tamaños más comunes
+          const sizes=STICKER_SIZES.filter(s=>s.shape==='rect').slice(0,8);
+          sizes.forEach(sz=>{
+            const pr=PIEZA[sz.key]?.[mt.v]||5;
+            const uid=`stk-${mt.v}-${sz.key}`;
+            body_html+=`<div class="mcat-prod">
+              <div class="mcat-prod-icon">🏷️</div>
+              <div class="mcat-prod-info">
+                <div class="mcat-prod-name">${sz.label} ${mt.label}</div>
+                <div class="mcat-prod-sub">${sz.per} pzas/hoja A4</div>
+              </div>
+              <div class="mcat-prod-price" id="mcat-pr-${uid}">$${pr}/pza</div>
+              <div class="mcat-prod-controls">
+                <input class="mcat-qty" type="number" min="1" value="10" id="mcat-qty-${uid}">
+                <button class="mcat-add" data-pkey="${sz.key}" data-mat="${mt.v}" data-tipo="sticker">+</button>
+              </div>
+            </div>`;
+          });
+        }
+      });
+    }
+    // ── PAPEL: 1 cara / 2 caras ──
+    else if(sec.tipo==='papel'){
+      sec.prods.forEach(p=>{
+        const pr=PAP_PR[p.key]||{u1:p.u,u2:p.u2};
+        ['1','2'].forEach(caras=>{
+          const uid=`pap-${p.key}-${caras}`;
+          const precio=caras==='1'?pr.u1:pr.u2;
+          body_html+=`<div class="mcat-prod">
+            <div class="mcat-prod-icon">📄</div>
+            <div class="mcat-prod-info">
+              <div class="mcat-prod-name">${p.name} · ${caras} cara${caras==='2'?'s':''}</div>
+              <div class="mcat-prod-sub">${p.sub}</div>
+            </div>
+            <div class="mcat-prod-price" id="mcat-pr-${uid}">$${precio}/hj</div>
+            <div class="mcat-prod-controls">
+              <input class="mcat-qty" type="number" min="1" value="1" id="mcat-qty-${uid}" placeholder="hojas">
+              <button class="mcat-add" data-pkey="${p.key}" data-caras="${caras}" data-tipo="papel">+</button>
+            </div>
+          </div>`;
+        });
+      });
+    }
+    // ── DTF / UV / SUB estándar ──
+    else{
+      sec.prods.forEach(p=>{
+        const pr=sec.pr[p.key]||{u:p.u||0,m:p.m||0};
+        body_html+=`<div class="mcat-prod" data-pkey="${p.key}" data-tipo="${sec.tipo}">
+          <div class="mcat-prod-icon">${p.icon}</div>
+          <div class="mcat-prod-info">
+            <div class="mcat-prod-name">${p.name}</div>
+            <div class="mcat-prod-sub">${p.sub}</div>
+          </div>
+          <div class="mcat-prod-price" id="mcat-pr-${p.key}">$${pr.u}</div>
+          <div class="mcat-prod-controls">
+            <input class="mcat-qty" type="number" min="1" value="1" id="mcat-qty-${p.key}">
+            <button class="mcat-add" data-pkey="${p.key}" data-tipo="${sec.tipo}" data-seci="${si}">+</button>
+          </div>
+        </div>`;
+      });
+    }
+
+    sec_el.innerHTML=`<div class="mcat-header"><div class="mcat-title">${sec.label}</div><span class="mcat-arrow">▼</span></div><div class="mcat-body">${body_html}</div>`;
+    wrap.appendChild(sec_el);
+    sec_el.querySelector('.mcat-header').addEventListener('click',()=>sec_el.classList.toggle('open'));
+
+    // ── Listeners de qty para actualizar precio mostrado ──
+    sec_el.querySelectorAll('.mcat-qty[id^="mcat-qty-"]').forEach(qtyEl=>{
+      qtyEl.addEventListener('input',()=>{
+        const uid=qtyEl.id.replace('mcat-qty-','');
+        const btn=sec_el.querySelector(`.mcat-add[data-pkey]`);
+        const prEl=document.getElementById('mcat-pr-'+uid);
+        if(!prEl)return;
+        const q=Math.max(1,parseInt(qtyEl.value)||1);
+        // stickers
+        if(uid.startsWith('stk-')){
+          const parts=uid.split('-'); // stk-mat-key
+          const mt=parts[1]; const skey=parts.slice(2).join('-');
+          const pr2=PIEZA[skey]?.[mt]||5;
+          prEl.textContent='$'+(q*pr2).toLocaleString('es-MX')+'/pza';
+        }
+        // papel
+        else if(uid.startsWith('pap-')){
+          const parts=uid.split('-'); const pkey=parts[1]; const caras=parts[2];
+          const pr2=PAP_PR[pkey]||{u1:0,u2:0};
+          const precio=caras==='1'?pr2.u1:pr2.u2;
+          prEl.textContent='$'+(q*precio).toLocaleString('es-MX');
+        }
+        // dtf/uv/sub
+        else{
+          const pr2=sec.pr?.[uid]||{u:0,m:0};
+          const base=q>=MAYOREO?pr2.m:pr2.u;
+          prEl.textContent='$'+(q*base).toLocaleString('es-MX');
+        }
+      });
+    });
+
+    // ── Botones + ──
+    sec_el.querySelectorAll('.mcat-add').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const tipo=btn.dataset.tipo;
+        const pkey=btn.dataset.pkey;
+
+        if(tipo==='sticker'){
+          const mat=btn.dataset.mat;
+          if(mat==='complejo'){
+            const qty=Math.max(1,parseInt(document.getElementById('mcat-qty-stk-complejo').value)||1);
+            const ppu=Math.max(4,parseFloat(document.getElementById('mcat-ppu-stk-complejo').value)||4);
+            multiItems.push({id:Date.now(),tipo:'Stickers',prod:'Corte complejo',nombre:'Sticker corte complejo',qty,total:qty*ppu,nota:'',variantes:[],varStr:'',precioTag:`$${ppu}/pza · precio manual`,mayoreoTag:''});
+          } else {
+            const uid=`stk-${mat}-${pkey}`;
+            const qty=Math.max(1,parseInt(document.getElementById('mcat-qty-'+uid).value)||1);
+            const pr2=PIEZA[pkey]?.[mat]||5;
+            const sz=STICKER_SIZES.find(s=>s.key===pkey);
+            const matLabel=mat==='normal'?'Adhesivo mate':'Foto premium';
+            multiItems.push({id:Date.now(),tipo:'Stickers',prod:sz?.label+' '+matLabel,nombre:`Sticker ${sz?.label} ${matLabel}`,qty,total:qty*pr2,nota:'',variantes:[],varStr:'',precioTag:`$${pr2}/pza · unitario`,mayoreoTag:''});
+          }
+        }
+        else if(tipo==='papel'){
+          const caras=btn.dataset.caras;
+          const qty=Math.max(1,parseInt(document.getElementById(`mcat-qty-pap-${pkey}-${caras}`).value)||1);
+          const pr2=PAP_PR[pkey]||{u1:0,u2:0};
+          const precio=caras==='1'?pr2.u1:pr2.u2;
+          const pap=PAPEL_TIPOS.find(x=>x.key===pkey);
+          multiItems.push({id:Date.now(),tipo:'Papeleria',prod:pap?.name+' '+caras+' cara'+(caras==='2'?'s':''),nombre:`${pap?.name} · ${caras} cara${caras==='2'?'s':''}`,qty,total:qty*precio,nota:'',variantes:[],varStr:'',precioTag:`$${precio}/hoja`,mayoreoTag:''});
+        }
+        else{
+          // DTF / UV / SUB
+          const prods=tipo==='DTF'?DTF_PRODS:tipo==='DTF UV · Vinil'?UV_PRODS:SUB_PRODS;
+          const prs=tipo==='DTF'?DTF_PR:tipo==='DTF UV · Vinil'?UV_PR:SUB_PR;
+          const p=prods.find(x=>x.key===pkey);if(!p)return;
+          const qty=Math.max(1,parseInt(document.getElementById('mcat-qty-'+pkey).value)||1);
+          const pr2=prs[pkey]||{u:p.u||0,m:p.m||0};
+          const mayo=qty>=MAYOREO;
+          const base=mayo?pr2.m:pr2.u;
+          multiItems.push({id:Date.now(),tipo,prod:p.name,nombre:p.name,qty,total:qty*base,nota:'',variantes:[],varStr:'',precioTag:`$${base}/pza`,mayoreoTag:mayo?'Mayoreo':'Unitario'});
+        }
+
+        renderMulti();
+        btn.textContent='✓';setTimeout(()=>btn.textContent='+',600);
+      });
+    });
+  });
+}
+
 function renderMulti(){
   const el=document.getElementById('multi-items');
-  if(multiItems.length===0){el.innerHTML='<div class="empty">Agrega productos con + Mixta.</div>';document.getElementById('multi-tot').textContent='$0';return;}
+  if(multiItems.length===0){el.innerHTML='<div class="empty" style="padding:14px;">Selecciona productos arriba.</div>';document.getElementById('multi-tot').textContent='$0';const badge=document.getElementById('multi-badge');if(badge)badge.style.display='none';calcPagoWidget('multi',0);return;}
   el.innerHTML='';
   let total=0;
+  const badge=document.getElementById('multi-badge');
+  if(badge){badge.style.display='inline';badge.textContent=multiItems.length;}
   multiItems.forEach(item=>{
     total+=item.total;
     const div=document.createElement('div');div.className='mcot-item';
-    div.innerHTML=`<div style="flex:1;"><div class="mcot-name">${item.nombre}</div><div class="mcot-detail">${item.tipo} · ${item.prod} ×${item.qty}${item.varStr?' | '+item.varStr:''}${item.nota?' | '+item.nota:''}</div></div><div style="display:flex;align-items:center;gap:8px;"><div class="mcot-price">$${item.total.toLocaleString('es-MX')}</div><button class="btn-rm-sm" data-mid="${item.id}">×</button></div>`;
+    const mayoreoStr=item.mayoreoTag?`<span style="background:${item.mayoreoTag==='Mayoreo'?'var(--acc)':'var(--border)'};color:${item.mayoreoTag==='Mayoreo'?'#fff':'var(--ink3)'};border-radius:6px;padding:1px 6px;font-size:10px;font-weight:700;margin-left:4px;">${item.mayoreoTag}</span>`:'';
+    const precioStr=item.precioTag?`<span style="color:var(--ink3);font-size:10px;margin-left:4px;">${item.precioTag}</span>`:'';
+    div.innerHTML=`<div style="flex:1;"><div class="mcot-name">${item.nombre}${mayoreoStr}</div><div class="mcot-detail">${item.tipo} · ×${item.qty}${precioStr}${item.varStr?' | '+item.varStr:''}${item.nota?' | '+item.nota:''} = <strong>$${item.total.toLocaleString('es-MX')}</strong></div></div><div style="display:flex;align-items:center;gap:8px;"><button class="btn-rm-sm" data-mid="${item.id}">×</button></div>`;
     el.appendChild(div);
   });
   document.getElementById('multi-tot').textContent='$'+total.toLocaleString('es-MX');
@@ -1636,10 +2001,13 @@ document.getElementById('col-save-btn').addEventListener('click',async()=>{
 // ── AJUSTES ──
 function renderAjustes(){
   document.getElementById('ph-n').value=HOJA.normal;document.getElementById('ph-f').value=HOJA.foto;
+  const cpEl=document.getElementById('ph-c');if(cpEl)cpEl.value=HOJA.complejo||4;
   let sh='';STICKER_SIZES.forEach(s=>{const p=PIEZA[s.key]||{normal:5,foto:8};sh+=`<div class="pe-row"><span class="pe-sz">${s.label}</span><input class="pe-inp" type="number" min="1" data-k="${s.key}" data-m="normal" value="${p.normal}"><input class="pe-inp" type="number" min="1" data-k="${s.key}" data-m="foto" value="${p.foto}"></div>`;});
   document.getElementById('pe-stk').innerHTML=sh;
   let dh='';DTF_PRODS.forEach(p=>{const pr=DTF_PR[p.key]||{u:p.u,m:p.m};dh+=`<div class="pe-row"><span class="pe-sz">${p.name}</span><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="dtf" data-f="u" value="${pr.u}"><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="dtf" data-f="m" value="${pr.m}"></div>`;});
   document.getElementById('pe-dtf').innerHTML=dh;
+  let uvh='';UV_PRODS.forEach(p=>{const pr=UV_PR[p.key]||{u:p.u,m:p.m};uvh+=`<div class="pe-row"><span class="pe-sz">${p.name}</span><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="uv" data-f="u" value="${pr.u}"><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="uv" data-f="m" value="${pr.m}"></div>`;});
+  const peUv=document.getElementById('pe-uv');if(peUv)peUv.innerHTML=uvh;
   let uh='';SUB_PRODS.forEach(p=>{const pr=SUB_PR[p.key]||{u:p.u,m:p.m};uh+=`<div class="pe-row"><span class="pe-sz">${p.name}</span><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="sub" data-f="u" value="${pr.u}"><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="sub" data-f="m" value="${pr.m}"></div>`;});
   document.getElementById('pe-sub').innerHTML=uh;
   let ph='';PAPEL_TIPOS.forEach(p=>{const pr=PAP_PR[p.key]||{u1:p.u,u2:p.u2};ph+=`<div class="pe-row pe-row2"><span class="pe-sz">${p.name}</span><input class="pe-inp" type="number" min="1" data-k="${p.key}" data-t="pap" data-f="u1" value="${pr.u1}"></div>`;});
@@ -1648,15 +2016,16 @@ function renderAjustes(){
   document.getElementById('pe-col').innerHTML=ch||'<div class="empty" style="padding:14px;">Agrega productos en El Coleccionista.</div>';
 }
 document.getElementById('save-prices').addEventListener('click',async()=>{
-  HOJA.normal=+document.getElementById('ph-n').value||35;HOJA.foto=+document.getElementById('ph-f').value||45;
+  HOJA.normal=+document.getElementById('ph-n').value||35;HOJA.foto=+document.getElementById('ph-f').value||45;const phc=document.getElementById('ph-c');if(phc)HOJA.complejo=+phc.value||4;
   document.querySelectorAll('.pe-inp[data-k][data-m]').forEach(i=>{const k=i.dataset.k,m=i.dataset.m;if(!PIEZA[k])PIEZA[k]={normal:5,foto:8};PIEZA[k][m]=+i.value||1;});
   document.querySelectorAll('.pe-inp[data-t="dtf"]').forEach(i=>{const k=i.dataset.k,f=i.dataset.f;if(!DTF_PR[k])DTF_PR[k]={};DTF_PR[k][f]=+i.value||1;});
+  document.querySelectorAll('.pe-inp[data-t="uv"]').forEach(i=>{const k=i.dataset.k,f=i.dataset.f;if(!UV_PR[k])UV_PR[k]={};UV_PR[k][f]=+i.value||1;});
   document.querySelectorAll('.pe-inp[data-t="sub"]').forEach(i=>{const k=i.dataset.k,f=i.dataset.f;if(!SUB_PR[k])SUB_PR[k]={};SUB_PR[k][f]=+i.value||1;});
   document.querySelectorAll('.pe-inp[data-t="pap"]').forEach(i=>{const k=i.dataset.k;if(!PAP_PR[k])PAP_PR[k]={};PAP_PR[k].u1=+i.value||1;});
   const colUpdates=[];
   document.querySelectorAll('.pe-inp[data-t="col"]').forEach(i=>{const p=colInv.find(x=>x.id===i.dataset.k);if(p)colUpdates.push(updateDoc(doc(db,'col_inv',p.id),{precio:+i.value||0}));});
   await Promise.all(colUpdates);
-  await setDoc(doc(db,'config','precios'),{pieza:PIEZA,hoja:HOJA,dtf:DTF_PR,sub:SUB_PR,papel:PAP_PR});
+  await setDoc(doc(db,'config','precios'),{pieza:PIEZA,hoja:HOJA,dtf:DTF_PR,uv:UV_PR,sub:SUB_PR,papel:PAP_PR});
   toast('<strong>Precios guardados</strong> y sincronizados');
   renderDesigns();calcStk();
 });
@@ -1664,7 +2033,7 @@ document.getElementById('save-prices').addEventListener('click',async()=>{
 
 // ── PAGO LOGIC ──
 let stkPagoTipo='efectivo';
-const pagoTipos={stk:'efectivo',dtf:'efectivo',sub:'efectivo',cli:'efectivo',pap:'efectivo',multi:'efectivo'};
+const pagoTipos={stk:'efectivo',dtf:'efectivo',uv:'efectivo',sub:'efectivo',cli:'efectivo',pap:'efectivo',multi:'efectivo'};
 
 window.calcPagoWidget=function(prefix, total){
   const realTotal=total||0;
@@ -1690,7 +2059,7 @@ function getPagoData(prefix, total){
 }
 
 function initAllPagos(){
-  ['stk','dtf','sub','cli','pap','multi'].forEach(prefix=>{
+  ['stk','dtf','uv','sub','cli','pap','multi'].forEach(prefix=>{
     const wrap=document.getElementById(prefix==='stk'?'sk-pago-tipo':prefix+'-pago-tipo');
     if(!wrap) return;
     wrap.querySelectorAll('.pago-btn').forEach(b=>{
@@ -1839,21 +2208,23 @@ document.getElementById('ped-search')?.addEventListener('input', e => {
 // ── AJUSTES SECTIONS ──
 window.showAjustesSection = function(sec){
   document.getElementById('aj-main').style.display = sec==='main'?'block':'none';
-  ['dtf-prod','sub-prod','pap-prod','stk-sizes'].forEach(s=>{
+  ['dtf-prod','uv-prod','sub-prod','pap-prod','stk-sizes'].forEach(s=>{
     const el = document.getElementById('aj-'+s);
     if(el) el.style.display = s===sec?'block':'none';
   });
   if(sec==='dtf-prod') renderAjProdList('dtf');
+  if(sec==='uv-prod') renderAjProdList('uv');
   if(sec==='sub-prod') renderAjProdList('sub');
   if(sec==='pap-prod') renderAjProdList('papel');
   if(sec==='stk-sizes') renderAjProdList('stk');
 };
 
 function renderAjProdList(tipo){
-  const elId = tipo==='dtf'?'aj-dtf-list':tipo==='sub'?'aj-sub-list':tipo==='papel'?'aj-pap-list':'aj-stk-list';
+  const elId = tipo==='dtf'?'aj-dtf-list':tipo==='uv'?'aj-uv-list':tipo==='sub'?'aj-sub-list':tipo==='papel'?'aj-pap-list':'aj-stk-list';
   const el = document.getElementById(elId); if(!el) return;
   let items = [];
   if(tipo==='dtf') items = DTF_PRODS;
+  if(tipo==='uv') items = UV_PRODS;
   if(tipo==='sub') items = SUB_PRODS;
   if(tipo==='papel') items = PAPEL_TIPOS;
   if(tipo==='stk') items = STICKER_SIZES;
@@ -1870,6 +2241,7 @@ function renderAjProdList(tipo){
 window.deleteProd = async function(tipo, idx){
   if(!confirm('Quitar este producto?')) return;
   if(tipo==='dtf'){ DTF_PRODS.splice(idx,1); delete DTF_PR[DTF_PRODS[idx]?.key||'']; }
+  if(tipo==='uv'){ UV_PRODS.splice(idx,1); }
   if(tipo==='sub'){ SUB_PRODS.splice(idx,1); }
   if(tipo==='papel'){ PAPEL_TIPOS.splice(idx,1); }
   if(tipo==='stk'){ STICKER_SIZES.splice(idx,1); }
@@ -1890,6 +2262,18 @@ window.saveNewProd = async function(tipo){
     DTF_PRODS.push({key,icon:document.getElementById('aj-dtf-icon').value||'👕',name,sub:document.getElementById('aj-dtf-desc').value,u,m,tallas});
     DTF_PR[key]={u,m};
     document.getElementById('aj-dtf-name').value='';document.getElementById('aj-dtf-icon').value='';document.getElementById('aj-dtf-desc').value='';document.getElementById('aj-dtf-u').value='';document.getElementById('aj-dtf-m').value='';
+  }
+  if(tipo==='uv'){
+    const name=document.getElementById('aj-uv-name').value.trim();
+    if(!name){toast('Pon un nombre.');return;}
+    const key='custom_'+Date.now();
+    const u=+document.getElementById('aj-uv-u').value||0;
+    const m=+document.getElementById('aj-uv-m').value||0;
+    const tallaMap={vasos:TALLAS_VASO,unica:['Unica']};
+    const tallas=tallaMap[document.getElementById('aj-uv-tallas').value]||['Unica'];
+    UV_PRODS.push({key,icon:document.getElementById('aj-uv-icon').value||'🥤',name,sub:document.getElementById('aj-uv-desc').value,u,m,tallas});
+    UV_PR[key]={u,m};
+    document.getElementById('aj-uv-name').value='';document.getElementById('aj-uv-icon').value='';document.getElementById('aj-uv-desc').value='';document.getElementById('aj-uv-u').value='';document.getElementById('aj-uv-m').value='';
   }
   if(tipo==='sub'){
     const name=document.getElementById('aj-sub-name').value.trim();
@@ -1936,6 +2320,7 @@ async function saveProdsToFirebase(){
   try {
     await setDoc(doc(db,'config','productos'),{
       dtf_extra: DTF_PRODS.filter(p=>p.key.startsWith('custom_')),
+      uv_extra: UV_PRODS.filter(p=>p.key.startsWith('custom_')),
       sub_extra: SUB_PRODS.filter(p=>p.key.startsWith('custom_')),
       papel_extra: PAPEL_TIPOS.filter(p=>p.key?.startsWith('custom_')),
       stk_extra: STICKER_SIZES.filter(p=>p.key?.includes('c') && !['c5','c8','c10'].includes(p.key) || (parseFloat(p.key)&&!['3x3','4x4','5x5','6x6','7x7','8x8','9x9','10x10','12x12','15x15','5x7','6x9','10x15'].includes(p.key))),
@@ -1949,11 +2334,33 @@ async function loadCustomProds(){
     if(!d.exists()) return;
     const data = d.data();
     if(data.dtf_extra) data.dtf_extra.forEach(p=>{ if(!DTF_PRODS.find(x=>x.key===p.key)){DTF_PRODS.push(p);DTF_PR[p.key]={u:p.u,m:p.m};} });
+    if(data.uv_extra) data.uv_extra.forEach(p=>{ if(!UV_PRODS.find(x=>x.key===p.key)){UV_PRODS.push(p);UV_PR[p.key]={u:p.u,m:p.m};} });
     if(data.sub_extra) data.sub_extra.forEach(p=>{ if(!SUB_PRODS.find(x=>x.key===p.key)){SUB_PRODS.push(p);SUB_PR[p.key]={u:p.u,m:p.m};} });
     if(data.papel_extra) data.papel_extra.forEach(p=>{ if(!PAPEL_TIPOS.find(x=>x.key===p.key)){PAPEL_TIPOS.push(p);PAP_PR[p.key]={u1:p.u,u2:p.u2};} });
     if(data.stk_extra) data.stk_extra.forEach(p=>{ if(!STICKER_SIZES.find(x=>x.key===p.key)){STICKER_SIZES.push(p);PIEZA[p.key]=p.pieza||{normal:5,foto:8};} });
   } catch(e){}
 }
+
+// ── DARK MODE ──
+function applyDarkMode(on){
+  document.body.classList.toggle('dark', on);
+  const sw = document.getElementById('dm-switch');
+  const icon = document.getElementById('dark-mode-icon');
+  const label = document.getElementById('dark-mode-label');
+  if(sw) sw.classList.toggle('on', on);
+  if(icon) icon.textContent = on ? '☀️' : '🌙';
+  if(label) label.textContent = on ? 'Modo claro' : 'Modo oscuro';
+  localStorage.setItem('darkMode', on ? '1' : '0');
+}
+window.toggleDarkMode = function(){
+  const isDark = document.body.classList.contains('dark');
+  applyDarkMode(!isDark);
+};
+// Init dark mode from saved preference
+(function(){
+  const saved = localStorage.getItem('darkMode');
+  if(saved === '1') applyDarkMode(true);
+})();
 
 // ── INIT ──
 async function init(){
