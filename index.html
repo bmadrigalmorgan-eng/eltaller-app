@@ -261,7 +261,12 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 /* HISTORIAL */
 .mes-header{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:0.05em;text-transform:uppercase;padding:10px 0 8px;border-bottom:1.5px solid var(--border);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
 .mes-total{font-size:12px;font-weight:700;color:var(--green);}
-.hist-item{background:var(--white);border-radius:16px;border:1.5px solid var(--border);padding:16px 18px;margin-bottom:10px;}
+.hist-item{background:var(--white);border-radius:16px;border:1.5px solid var(--border);border-left:4px solid var(--border);padding:16px 18px;margin-bottom:10px;transition:border-color 0.15s;}
+.hist-item.hi-pend{border-left-color:#F5A623;background:#FFFDF5;}
+.hist-item.hi-proc{border-left-color:var(--blue);background:#F0F7FF;}
+.hist-item.hi-list{border-left-color:var(--green);background:#F0FBF4;}
+.hist-item.hi-entr{border-left-color:#AEADA8;background:var(--bg);}
+.hist-item.hi-canc{border-left-color:var(--red);opacity:0.5;border-style:dashed;}
 .hist-item.cancelado{opacity:0.45;border-style:dashed;}
 .hist-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;}
 .hist-cliente{font-size:14px;font-weight:600;color:var(--ink);}
@@ -269,12 +274,12 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 .hist-total{font-size:18px;font-weight:700;color:var(--ink);}
 .hist-detail{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.6;}
 .hist-nota{font-size:11px;color:var(--ink3);margin-top:4px;font-style:italic;line-height:1.5;}
-.hist-status{display:inline-block;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-top:8px;}
-.st-pend{background:#FFF3CD;color:#856404;}
-.st-proc{background:var(--bl);color:var(--blue);}
-.st-list{background:var(--gl);color:var(--green);}
-.st-entr{background:var(--bg);color:var(--ink3);}
-.st-canc{background:var(--rl);color:var(--red);}
+.hist-status{display:inline-block;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-top:8px;letter-spacing:0.02em;}
+.st-pend{background:#FFF0CC;color:#B07800;border:1.5px solid #F5A623;}
+.st-proc{background:#E8F3FF;color:#1a6ec7;border:1.5px solid var(--blue);}
+.st-list{background:#E6F9ED;color:#1a8a45;border:1.5px solid var(--green);}
+.st-entr{background:var(--bg);color:var(--ink3);border:1.5px solid var(--border);}
+.st-canc{background:#FEE8E8;color:#c0392b;border:1.5px solid var(--red);}
 .hist-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
 .hbtn{flex:1;min-width:72px;padding:10px 8px;border-radius:10px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--ink2);text-align:center;}
 .hbtn.wa{border-color:#25D366;color:#25D366;}
@@ -324,6 +329,20 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 .pe-inp{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:var(--bg);border:1.5px solid var(--border);border-radius:9px;padding:10px 8px;width:100%;outline:none;transition:border-color 0.15s;appearance:none;-webkit-appearance:none;text-align:center;min-height:44px;}
 .pe-inp:focus{border-color:var(--acc);}
 .save-note{font-size:11px;color:var(--ink3);text-align:center;margin-top:10px;}
+.corte-hist-item{background:var(--white);border-radius:14px;border:1.5px solid var(--border);border-left:4px solid var(--acc);padding:14px 16px;margin-bottom:10px;}
+.corte-hist-fecha{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.corte-hist-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border);}
+.corte-hist-row:last-child{border-bottom:none;}
+.corte-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:flex-end;}
+.corte-modal{background:var(--white);border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;max-height:85vh;overflow-y:auto;}
+.corte-modal-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.corte-modal-sub{font-size:12px;color:var(--ink3);margin-bottom:20px;}
+.corte-dato-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.corte-dato-label{font-size:13px;color:var(--ink2);}
+.corte-dato-val{font-size:15px;font-weight:700;color:var(--ink);}
+.corte-diferencia{font-size:14px;font-weight:700;}
+.corte-dif-ok{color:var(--green);}
+.corte-dif-mal{color:var(--red);}
 
 /* NAV */
 .nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -341,6 +360,26 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 .pago-btn.on{border-color:var(--acc);background:var(--al);color:var(--ai);}
 .pago-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;background:var(--gl);color:var(--green);}
 .pago-badge.parcial{background:#FFF3CD;color:#856404;}
+.periodo-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.pf-btn{padding:8px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--ink2);font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pf-btn.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+.resumen-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:4px;}
+.rc-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);padding:16px 18px;}
+.rc-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+.rc-main{font-size:26px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.rc-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.rc-row:last-child{border-bottom:none;}
+.rc-label{font-size:12px;color:var(--ink2);}
+.rc-val{font-size:13px;font-weight:700;color:var(--ink);}
+.rc-bar-wrap{background:var(--bg);border-radius:100px;height:8px;overflow:hidden;margin-top:8px;}
+.rc-bar{height:8px;border-radius:100px;background:var(--green);transition:width 0.5s;}
+.rc-pct{font-size:11px;color:var(--ink3);margin-top:4px;text-align:right;}
+.rc-srv-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.rc-srv-row:last-child{border-bottom:none;}
+.rc-srv-bar-wrap{flex:1;background:var(--bg);border-radius:100px;height:6px;overflow:hidden;}
+.rc-srv-bar{height:6px;border-radius:100px;background:var(--acc);}
+.rc-srv-name{font-size:11px;color:var(--ink2);width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rc-srv-val{font-size:11px;font-weight:700;color:var(--ink);width:52px;text-align:right;flex-shrink:0;}
 .saldo-box{background:var(--bg);border-radius:14px;padding:16px 18px;margin-top:12px;border:1.5px solid var(--border);}
 .saldo-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;font-size:13px;color:var(--ink2);border-bottom:1px solid var(--border);}
 .saldo-row:last-child{border-bottom:none;font-weight:700;color:var(--ink);font-size:15px;}
@@ -383,8 +422,25 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
 .mcot-price{font-size:15px;font-weight:700;color:var(--ink);flex-shrink:0;}
 
 /* GASTOS */
-.gasto-item{background:var(--white);border-radius:14px;border:1.5px solid var(--border);padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.gasto-item.egreso{border-left:3px solid var(--red);}
+.gasto-item{background:var(--white);border-radius:14px;border:1.5px solid var(--border);border-left:4px solid var(--border);padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.gasto-item.egreso{border-left:4px solid var(--red);}
+.gi-insumos{border-left-color:#E67E22;background:#FFF8F2;}
+.gi-renta{border-left-color:#8E44AD;background:#FAF5FF;}
+.gi-servicios{border-left-color:#2980B9;background:#F0F7FF;}
+.gi-transporte{border-left-color:#27AE60;background:#F0FBF4;}
+.gi-equipo{border-left-color:#2C3E50;background:#F5F6FA;}
+.gi-marketing{border-left-color:#E91E8C;background:#FFF0F8;}
+.gi-otro{border-left-color:#95A5A6;background:var(--bg);}
+.gastos-resumen-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);padding:16px 18px;margin-bottom:16px;}
+.gr-titulo{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+.gr-total{font-size:26px;font-weight:700;color:var(--red);margin-bottom:10px;}
+.gr-cat-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.gr-cat-row:last-child{border-bottom:none;}
+.gr-cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.gr-cat-name{font-size:11px;color:var(--ink2);width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gr-cat-bar-wrap{flex:1;background:var(--bg);border-radius:100px;height:6px;overflow:hidden;}
+.gr-cat-bar{height:6px;border-radius:100px;}
+.gr-cat-val{font-size:11px;font-weight:700;color:var(--ink);width:60px;text-align:right;flex-shrink:0;}
 .gasto-info{flex:1;}
 .gasto-desc{font-size:14px;font-weight:600;color:var(--ink);}
 .gasto-fecha{font-size:11px;color:var(--ink3);margin-top:2px;}
@@ -431,6 +487,18 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <div class="nav-card" onclick="goTab('coleccionista')"><div class="nav-icon">👕</div><div class="nav-title">El Coleccionista</div><div class="nav-sub">Inventario y ventas</div></div>
     <div class="nav-card" onclick="goTab('ajustes')"><div class="nav-icon">⚙️</div><div class="nav-title">Ajustes</div><div class="nav-sub">Precios y configuracion</div></div>
   </div>
+
+  <!-- Corte de caja -->
+  <div class="s-label" style="margin-top:20px;">Caja</div>
+  <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink);">Corte de caja</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:2px;">Cierra el período y guarda el resumen</div>
+    </div>
+    <button class="btn-p" style="flex-shrink:0;padding:12px 18px;" onclick="abrirCorte()">Hacer corte</button>
+  </div>
+  <div class="s-label" style="margin-top:16px;">Historial de cortes</div>
+  <div id="cortes-hist-list"><div class="empty" style="padding:14px;">Sin cortes aun.</div></div>
 </div>
 
 <!-- HUB DE SERVICIOS -->
@@ -931,8 +999,27 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <button class="btn-p" id="gasto-save">Registrar gasto</button>
   </div>
 
-  <!-- Lista de gastos -->
-  <div class="s-label">Historial de gastos</div>
+  <!-- Filtro período gastos -->
+  <div class="s-label" style="margin-top:20px;">Historial de gastos</div>
+  <div class="periodo-filter" id="gasto-pf">
+    <button class="pf-btn on" data-gpf="mes">Este mes</button>
+    <button class="pf-btn" data-gpf="pasado">Mes anterior</button>
+    <button class="pf-btn" data-gpf="semana">Esta semana</button>
+    <button class="pf-btn" data-gpf="todo">Todo</button>
+    <button class="pf-btn" data-gpf="custom">📅 Fechas</button>
+  </div>
+  <div id="gpf-custom-wrap" style="display:none;margin-bottom:12px;">
+    <div class="row2">
+      <div class="field"><div class="fl">Desde</div><input class="inp" type="date" id="gpf-desde"></div>
+      <div class="field"><div class="fl">Hasta</div><input class="inp" type="date" id="gpf-hasta"></div>
+    </div>
+    <button class="btn-s" onclick="renderGastos()">Aplicar</button>
+  </div>
+
+  <!-- Resumen tarjeta gastos -->
+  <div id="gastos-resumen-wrap"></div>
+
+  <!-- Lista -->
   <div id="gastos-list"><div class="empty">Sin gastos registrados.</div></div>
 </div>
 
@@ -950,7 +1037,27 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink);disp
     <div class="k-col k-proc"><div class="k-col-title">En proceso<span class="k-count" id="k-pro-n">0</span></div><div class="k-body" id="k-pro-b"></div></div>
     <div class="k-col k-list"><div class="k-col-title">Listos<span class="k-count" id="k-lis-n">0</span></div><div class="k-body" id="k-lis-b"></div></div>
   </div>
-  <div class="s-label">Historial por mes</div>
+
+  <!-- ── FILTRO DE PERÍODO ── -->
+  <div class="s-label" style="margin-top:20px;">Historial</div>
+  <div class="periodo-filter">
+    <button class="pf-btn on" data-pf="mes">Este mes</button>
+    <button class="pf-btn" data-pf="pasado">Mes anterior</button>
+    <button class="pf-btn" data-pf="semana">Esta semana</button>
+    <button class="pf-btn" data-pf="todo">Todo</button>
+    <button class="pf-btn" data-pf="custom">📅 Fechas</button>
+  </div>
+  <div id="pf-custom-wrap" style="display:none;margin-bottom:12px;">
+    <div class="row2">
+      <div class="field"><div class="fl">Desde</div><input class="inp" type="date" id="pf-desde"></div>
+      <div class="field"><div class="fl">Hasta</div><input class="inp" type="date" id="pf-hasta"></div>
+    </div>
+    <button class="btn-s" onclick="renderHistFiltrado()">Aplicar</button>
+  </div>
+
+  <!-- ── RESUMEN NETO 3 TARJETAS ── -->
+  <div id="resumen-periodo" style="margin-bottom:16px;"></div>
+
   <div id="hist-list"></div>
   </div><!-- /pedidos-normal -->
 </div>
@@ -1232,6 +1339,7 @@ SUB_PRODS.forEach(p=>SUB_PR[p.key]={u:p.u,m:p.m});
 PAPEL_TIPOS.forEach(p=>PAP_PR[p.key]={u1:p.u,u2:p.u2});
 
 let pedidos=[], colInv=[], colVentas=[], multiItems=[];
+let periodoFiltro='mes'; // mes|pasado|semana|todo|custom
 let selectedDtf=null, selectedSub=null, selectedUv=null, selectedCli=null, selectedPapel=null;
 let mat='normal', mode='pieza', stkUid=1, designs=[];
 
@@ -1969,11 +2077,91 @@ function renderKCol(id,items){
   el.querySelectorAll('.k-btn[data-del]').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Cancelar este pedido?'))return;await updateDoc(doc(db,'pedidos',b.dataset.id),{status:'cancelado'});toast('Pedido cancelado');}));
 }
 
-function renderHistPorMes(){
+// ── Calcula rango de fechas según filtro activo ──
+function getPeriodoRange(){
+  const now=new Date();
+  let desde,hasta;
+  if(periodoFiltro==='mes'){
+    desde=new Date(now.getFullYear(),now.getMonth(),1);
+    hasta=new Date(now.getFullYear(),now.getMonth()+1,0,23,59,59);
+  } else if(periodoFiltro==='pasado'){
+    desde=new Date(now.getFullYear(),now.getMonth()-1,1);
+    hasta=new Date(now.getFullYear(),now.getMonth(),0,23,59,59);
+  } else if(periodoFiltro==='semana'){
+    const day=now.getDay();
+    desde=new Date(now); desde.setDate(now.getDate()-day); desde.setHours(0,0,0,0);
+    hasta=new Date(desde); hasta.setDate(desde.getDate()+6); hasta.setHours(23,59,59,999);
+  } else if(periodoFiltro==='custom'){
+    const d=document.getElementById('pf-desde')?.value;
+    const h=document.getElementById('pf-hasta')?.value;
+    desde=d?new Date(d+'T00:00:00'):new Date(0);
+    hasta=h?new Date(h+'T23:59:59'):new Date();
+  } else { // todo
+    desde=new Date(0); hasta=new Date();
+  }
+  return{desde,hasta};
+}
+
+// ── Renderiza resumen de 3 tarjetas ──
+function renderResumenPeriodo(items){
+  const el=document.getElementById('resumen-periodo');if(!el)return;
+  const activos=items.filter(p=>p.status!=='cancelado');
+  const totalPeriodo=activos.reduce((a,p)=>a+(p.total||0),0);
+  const efectivo=activos.reduce((a,p)=>a+(p.pago?.tipo==='efectivo'?(p.pago.anticipo||0):0),0);
+  const banco=activos.reduce((a,p)=>a+(p.pago?.tipo!=='efectivo'?(p.pago.anticipo||0):0),0);
+  const cobrado=activos.reduce((a,p)=>a+(p.pago?.pagado?p.total||0:p.pago?.anticipo||0),0);
+  const porCobrar=activos.reduce((a,p)=>a+(p.pago?.pagado?0:p.pago?.saldo||0),0);
+  const pctCobrado=totalPeriodo>0?Math.round(cobrado/totalPeriodo*100):0;
+  // por servicio
+  const srvMap={};
+  activos.forEach(p=>{
+    const t=(p.tipo||'Otro').split(' ')[0];
+    srvMap[t]=(srvMap[t]||0)+(p.total||0);
+  });
+  const srvArr=Object.entries(srvMap).sort((a,b)=>b[1]-a[1]);
+  const maxSrv=srvArr[0]?.[1]||1;
+
+  el.innerHTML=`<div class="resumen-cards">
+    <!-- Tarjeta 1: Ingresos -->
+    <div class="rc-card">
+      <div class="rc-title">💰 Ingresos del período</div>
+      <div class="rc-main">$${totalPeriodo.toLocaleString('es-MX')}</div>
+      <div class="rc-row"><span class="rc-label">💵 Efectivo</span><span class="rc-val">$${efectivo.toLocaleString('es-MX')}</span></div>
+      <div class="rc-row"><span class="rc-label">🏦 Cuenta bancaria</span><span class="rc-val">$${banco.toLocaleString('es-MX')}</span></div>
+      <div class="rc-row"><span class="rc-label">📦 Pedidos activos</span><span class="rc-val">${activos.length}</span></div>
+    </div>
+    <!-- Tarjeta 2: Cobrado vs pendiente -->
+    <div class="rc-card">
+      <div class="rc-title">📬 Cobrado vs por cobrar</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <span style="font-size:18px;font-weight:700;color:var(--green);">$${cobrado.toLocaleString('es-MX')} cobrado</span>
+        <span style="font-size:13px;color:${porCobrar>0?'#B07800':'var(--ink3)'};">$${porCobrar.toLocaleString('es-MX')} pendiente</span>
+      </div>
+      <div class="rc-bar-wrap"><div class="rc-bar" style="width:${pctCobrado}%;"></div></div>
+      <div class="rc-pct">${pctCobrado}% cobrado</div>
+    </div>
+    <!-- Tarjeta 3: Por servicio -->
+    <div class="rc-card">
+      <div class="rc-title">📊 Por tipo de servicio</div>
+      ${srvArr.length===0?'<div style="color:var(--ink3);font-size:13px;">Sin datos</div>':srvArr.map(([nombre,val])=>`
+      <div class="rc-srv-row">
+        <span class="rc-srv-name">${nombre}</span>
+        <div class="rc-srv-bar-wrap"><div class="rc-srv-bar" style="width:${Math.round(val/maxSrv*100)}%;"></div></div>
+        <span class="rc-srv-val">$${val.toLocaleString('es-MX')}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+window.renderHistFiltrado = function(){
+  const{desde,hasta}=getPeriodoRange();
+  const filtered=pedidos.filter(p=>{const d=new Date(p.fecha);return d>=desde&&d<=hasta;});
+  renderResumenPeriodo(filtered);
   const el=document.getElementById('hist-list');el.innerHTML='';
-  if(pedidos.length===0){el.innerHTML='<div class="empty">Sin pedidos aun.</div>';return;}
+  if(filtered.length===0){el.innerHTML='<div class="empty" style="padding:20px;">Sin pedidos en este período.</div>';return;}
+  // Agrupar por mes dentro del filtro
   const porMes={};
-  pedidos.forEach(p=>{
+  filtered.forEach(p=>{
     const d=new Date(p.fecha);
     const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
     const label=d.toLocaleDateString('es-MX',{month:'long',year:'numeric'});
@@ -1989,15 +2177,24 @@ function renderHistPorMes(){
     mes.items.forEach(p=>{
       const fecha=new Date(p.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'});
       const stCls={pendiente:'st-pend',proceso:'st-proc',listo:'st-list',entregado:'st-entr',cancelado:'st-canc'}[p.status]||'st-pend';
-      const div=document.createElement('div');div.className='hist-item'+(p.status==='cancelado'?' cancelado':'');
+      const hiCls={pendiente:'hi-pend',proceso:'hi-proc',listo:'hi-list',entregado:'hi-entr',cancelado:'hi-canc'}[p.status]||'hi-pend';
+      const div=document.createElement('div');div.className='hist-item '+hiCls+(p.status==='cancelado'?' cancelado':'');
       div.innerHTML=`<div class="hist-header"><div><div class="hist-cliente">${p.cliente}</div><div class="hist-folio">${p.folio||''} · ${fecha}</div></div><div class="hist-total">${p.status==='cancelado'?'<span style="font-size:12px;color:var(--red);">Cancelado</span>':'$'+(p.total||0).toLocaleString('es-MX')}</div></div><div class="hist-detail">${p.tipo} · ${(p.detalle||'').substring(0,80)}${(p.detalle||'').length>80?'...':''}</div>${p.nota?`<div class="hist-nota">📝 ${p.nota}</div>`:''}<span class="hist-status ${stCls}">${SL[p.status]}</span>${p.pago?`<span class="pago-badge ${p.pago.pagado?'':' parcial'}" style="margin-left:8px;">${p.pago.pagado?'✓ Pagado completo':`Anticipo $${(p.pago.anticipo||0).toLocaleString('es-MX')} · Saldo $${(p.pago.saldo||0).toLocaleString('es-MX')}`} · ${p.pago.tipo}</span>`:''}<div class="hist-actions"><button class="hbtn cot" data-cot="${p.id}">Cotizacion WA</button><button class="hbtn wa" data-wa2="${p.id}">Listo WA</button><button class="hbtn canc" data-canc="${p.id}">Cancelar</button><button class="hbtn danger" data-elim="${p.id}">Eliminar</button></div>`;
       el.appendChild(div);
     });
   });
+  attachHistListeners(el);
+};
+
+function attachHistListeners(el){
   el.querySelectorAll('.hbtn[data-cot]').forEach(b=>b.addEventListener('click',()=>{const p=pedidos.find(x=>x.id===b.dataset.cot);if(!p)return;shareWA(buildCotWA(p.cliente,p.tel||'',p.tipo,[p.tipo+': '+p.detalle],p.total||0,p.nota||'',p.folio||''));}));
   el.querySelectorAll('.hbtn[data-wa2]').forEach(b=>b.addEventListener('click',()=>{const p=pedidos.find(x=>x.id===b.dataset.wa2);if(!p)return;shareWA(buildListoWA(p.cliente,p.tel||'',p.tipo,[p.tipo+': '+p.detalle],p.total||0,p.nota||'',p.folio||''));}));
   el.querySelectorAll('.hbtn[data-canc]').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Marcar como cancelado?'))return;await updateDoc(doc(db,'pedidos',b.dataset.canc),{status:'cancelado'});toast('Pedido cancelado');}));
   el.querySelectorAll('.hbtn[data-elim]').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Eliminar permanentemente?'))return;await deleteDoc(doc(db,'pedidos',b.dataset.elim));toast('Pedido eliminado');}));
+}
+
+function renderHistPorMes(){
+  renderHistFiltrado();
 }
 
 // ── COLECCIONISTA ──
@@ -2462,6 +2659,7 @@ window.toggleDarkMode = function(){
 let gastosPeriodo = 'taller';
 let gastosData = [];
 let gastosEstudio = [];
+let gastosFiltro = 'mes'; // mes|pasado|semana|todo|custom
 
 document.getElementById('gastos-toggle')?.addEventListener('click', e => {
   const b = e.target.closest('.tgl'); if(!b) return;
@@ -2471,11 +2669,60 @@ document.getElementById('gastos-toggle')?.addEventListener('click', e => {
   renderGastos();
 });
 
+// Filtro período gastos
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('#gasto-pf .pf-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#gasto-pf .pf-btn').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      gastosFiltro=btn.dataset.gpf;
+      const wrap=document.getElementById('gpf-custom-wrap');
+      if(wrap) wrap.style.display=gastosFiltro==='custom'?'block':'none';
+      if(gastosFiltro!=='custom') renderGastos();
+    });
+  });
+});
+
+// Colores por categoría de gasto
+const GASTO_CAT_COLORS = {
+  'Insumos':'#E67E22','Renta':'#8E44AD','Servicios (luz, agua)':'#2980B9',
+  'Transporte':'#27AE60','Equipo':'#2C3E50','Marketing':'#E91E8C','Otro':'#95A5A6'
+};
+function gastoCatColor(cat){ return GASTO_CAT_COLORS[cat] || '#95A5A6'; }
+function gastoCatClass(cat){
+  const m={'Insumos':'gi-insumos','Renta':'gi-renta','Servicios (luz, agua)':'gi-servicios',
+    'Transporte':'gi-transporte','Equipo':'gi-equipo','Marketing':'gi-marketing','Otro':'gi-otro'};
+  return m[cat]||'gi-otro';
+}
+
+// Rango de fechas para gastos
+function getGastosPeriodoRange(){
+  const now=new Date();
+  let desde,hasta;
+  if(gastosFiltro==='mes'){
+    desde=new Date(now.getFullYear(),now.getMonth(),1);
+    hasta=new Date(now.getFullYear(),now.getMonth()+1,0,23,59,59);
+  } else if(gastosFiltro==='pasado'){
+    desde=new Date(now.getFullYear(),now.getMonth()-1,1);
+    hasta=new Date(now.getFullYear(),now.getMonth(),0,23,59,59);
+  } else if(gastosFiltro==='semana'){
+    const day=now.getDay();
+    desde=new Date(now); desde.setDate(now.getDate()-day); desde.setHours(0,0,0,0);
+    hasta=new Date(desde); hasta.setDate(desde.getDate()+6); hasta.setHours(23,59,59,999);
+  } else if(gastosFiltro==='custom'){
+    const d=document.getElementById('gpf-desde')?.value;
+    const h=document.getElementById('gpf-hasta')?.value;
+    desde=d?new Date(d+'T00:00:00'):new Date(0);
+    hasta=h?new Date(h+'T23:59:59'):new Date();
+  } else { desde=new Date(0); hasta=new Date(); }
+  return{desde,hasta};
+}
+
 function renderGastos(){
   const now = new Date();
   const lista = gastosPeriodo === 'taller' ? gastosData : gastosEstudio;
-  
-  // Ingresos del mes
+
+  // Ingresos del mes (resumen de caja — siempre del mes actual)
   let ingresos = 0;
   if(gastosPeriodo === 'taller'){
     ingresos = pedidos.filter(p => {
@@ -2489,33 +2736,68 @@ function renderGastos(){
       return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
     }).reduce((a,v) => a+(v.total||0), 0);
   }
-
-  // Gastos del mes
   const egresosMes = lista.filter(g => {
     const d = new Date(g.fecha);
     return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
   }).reduce((a,g) => a+(g.monto||0), 0);
-
   const neto = ingresos - egresosMes;
-
   document.getElementById('caja-ingresos').textContent = '$'+ingresos.toLocaleString('es-MX');
   document.getElementById('caja-egresos').textContent = '-$'+egresosMes.toLocaleString('es-MX');
   const netoEl = document.getElementById('caja-neto');
   netoEl.textContent = '$'+neto.toLocaleString('es-MX');
   netoEl.className = 'caja-val ' + (neto >= 0 ? 'pos' : 'neg');
 
-  // Set today's date as default
+  // Set today date default
   const fechaInp = document.getElementById('gasto-fecha');
   if(fechaInp && !fechaInp.value) fechaInp.value = now.toISOString().split('T')[0];
 
-  // Render list
+  // ── Filtrar por período seleccionado ──
+  const{desde,hasta}=getGastosPeriodoRange();
+  const listaFiltrada=[...lista].filter(g=>{
+    const d=new Date(g.fecha+'T12:00:00');
+    return d>=desde && d<=hasta;
+  }).sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+
+  // ── Tarjeta resumen dinámica ──
+  const resumenWrap=document.getElementById('gastos-resumen-wrap');
+  if(resumenWrap){
+    const totalPeriodo=listaFiltrada.reduce((a,g)=>a+(g.monto||0),0);
+    // Agrupar por categoría
+    const catMap={};
+    listaFiltrada.forEach(g=>{
+      const c=g.cat||'Otro';
+      catMap[c]=(catMap[c]||0)+(g.monto||0);
+    });
+    const catArr=Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
+    const maxCat=catArr[0]?.[1]||1;
+    resumenWrap.innerHTML=totalPeriodo===0?'':
+      `<div class="gastos-resumen-card">
+        <div class="gr-titulo">💸 Gastos del período</div>
+        <div class="gr-total">-$${totalPeriodo.toLocaleString('es-MX')}</div>
+        ${catArr.map(([cat,val])=>`
+        <div class="gr-cat-row">
+          <span class="gr-cat-dot" style="background:${gastoCatColor(cat)};"></span>
+          <span class="gr-cat-name">${cat}</span>
+          <div class="gr-cat-bar-wrap"><div class="gr-cat-bar" style="width:${Math.round(val/maxCat*100)}%;background:${gastoCatColor(cat)};"></div></div>
+          <span class="gr-cat-val">$${val.toLocaleString('es-MX')}</span>
+        </div>`).join('')}
+      </div>`;
+  }
+
+  // ── Lista con colores por categoría ──
   const el = document.getElementById('gastos-list');
-  if(lista.length === 0){ el.innerHTML = '<div class="empty">Sin gastos registrados.</div>'; return; }
+  if(listaFiltrada.length === 0){
+    el.innerHTML = '<div class="empty" style="padding:16px;">Sin gastos en este período.</div>';
+    return;
+  }
   el.innerHTML = '';
-  [...lista].sort((a,b) => new Date(b.fecha)-new Date(a.fecha)).forEach(g => {
-    const fecha = new Date(g.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
-    const div = document.createElement('div'); div.className = 'gasto-item egreso';
-    div.innerHTML = `<div class="gasto-info"><div class="gasto-desc">${g.desc}</div><div class="gasto-fecha">${g.cat} · ${fecha}</div></div><div style="display:flex;align-items:center;gap:10px;"><div class="gasto-monto">-$${(g.monto||0).toLocaleString('es-MX')}</div><button class="btn-rm-sm" data-gid="${g.id}">×</button></div>`;
+  listaFiltrada.forEach(g => {
+    const fecha = new Date(g.fecha+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+    const catCls = gastoCatClass(g.cat||'Otro');
+    const catColor = gastoCatColor(g.cat||'Otro');
+    const div = document.createElement('div');
+    div.className = `gasto-item egreso ${catCls}`;
+    div.innerHTML = `<div class="gasto-info"><div class="gasto-desc">${g.desc}</div><div class="gasto-fecha" style="display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${catColor};flex-shrink:0;"></span>${g.cat||'Otro'} · ${fecha}</div></div><div style="display:flex;align-items:center;gap:10px;"><div class="gasto-monto">-$${(g.monto||0).toLocaleString('es-MX')}</div><button class="btn-rm-sm" data-gid="${g.id}">×</button></div>`;
     el.appendChild(div);
   });
   el.querySelectorAll('.btn-rm-sm[data-gid]').forEach(b => b.addEventListener('click', async () => {
@@ -2788,6 +3070,138 @@ async function loadServiciosPersonalizados(){
   } catch(e){}
 }
 
+
+// ══════════════════════════════════════════════════════════════
+// CORTE DE CAJA
+// ══════════════════════════════════════════════════════════════
+let cortesData = [];
+
+async function loadCortes(){
+  try{
+    const snap=await getDocs(query(collection(db,'cortes'),orderBy('fecha','desc')));
+    cortesData=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderCortesHist();
+  }catch(e){}
+}
+
+function renderCortesHist(){
+  const el=document.getElementById('cortes-hist-list');if(!el)return;
+  if(cortesData.length===0){el.innerHTML='<div class="empty" style="padding:14px;">Sin cortes aun.</div>';return;}
+  el.innerHTML=cortesData.map(c=>{
+    const f=new Date(c.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
+    const dif=c.contado-(c.efectivoEsperado||0);
+    const difCls=dif>=0?'corte-dif-ok':'corte-dif-mal';
+    const difStr=dif>=0?`+$${dif.toLocaleString('es-MX')}`:`-$${Math.abs(dif).toLocaleString('es-MX')}`;
+    return `<div class="corte-hist-item">
+      <div class="corte-hist-fecha">📅 Corte del ${f}</div>
+      <div class="corte-hist-row"><span>Total del período</span><strong>$${(c.totalPeriodo||0).toLocaleString('es-MX')}</strong></div>
+      <div class="corte-hist-row"><span>💵 Efectivo esperado</span><span>$${(c.efectivoEsperado||0).toLocaleString('es-MX')}</span></div>
+      <div class="corte-hist-row"><span>💵 Efectivo contado</span><span>$${(c.contado||0).toLocaleString('es-MX')}</span></div>
+      <div class="corte-hist-row"><span>Diferencia</span><span class="corte-diferencia ${difCls}">${difStr}</span></div>
+      <div class="corte-hist-row"><span>🏦 Cuenta bancaria (ref.)</span><span>$${(c.bancoEsperado||0).toLocaleString('es-MX')}</span></div>
+      <div class="corte-hist-row"><span>Período cubierto</span><span style="font-size:11px;color:var(--ink3);">${c.periodoLabel||'—'}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function getUltimoCorteDate(){
+  if(cortesData.length===0) return new Date(0);
+  return new Date(cortesData[0].fecha);
+}
+
+window.abrirCorte = function(){
+  const desde=getUltimoCorteDate();
+  const hasta=new Date();
+  const pedidosPeriodo=pedidos.filter(p=>{
+    if(p.status==='cancelado') return false;
+    const d=new Date(p.fecha);
+    return d>desde && d<=hasta;
+  });
+  const totalPeriodo=pedidosPeriodo.reduce((a,p)=>a+(p.total||0),0);
+  const efectivoEsperado=pedidosPeriodo.reduce((a,p)=>{
+    if(p.pago?.tipo==='efectivo') return a+(p.pago.anticipo||0);
+    return a;
+  },0);
+  const bancoEsperado=pedidosPeriodo.reduce((a,p)=>{
+    if(p.pago?.tipo!=='efectivo') return a+(p.pago.anticipo||0);
+    return a;
+  },0);
+  const fDesde=desde.getTime()===0?'inicio':desde.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+  const fHasta=hasta.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+  const periodoLabel=`${fDesde} — ${fHasta}`;
+
+  // Crear modal
+  const overlay=document.createElement('div');overlay.className='corte-modal-overlay';
+  overlay.innerHTML=`<div class="corte-modal">
+    <div class="corte-modal-title">✂️ Corte de caja</div>
+    <div class="corte-modal-sub">${periodoLabel} · ${pedidosPeriodo.length} pedidos</div>
+    <div class="corte-dato-row"><span class="corte-dato-label">Total del período</span><span class="corte-dato-val">$${totalPeriodo.toLocaleString('es-MX')}</span></div>
+    <div class="corte-dato-row"><span class="corte-dato-label">💵 Efectivo esperado</span><span class="corte-dato-val">$${efectivoEsperado.toLocaleString('es-MX')}</span></div>
+    <div class="corte-dato-row" style="border-bottom:none;padding-bottom:4px;"><span class="corte-dato-label">🏦 Cuenta bancaria (ref.)</span><span class="corte-dato-val" style="color:var(--ink3);">$${bancoEsperado.toLocaleString('es-MX')}</span></div>
+    <div style="background:var(--bg);border-radius:12px;padding:14px;margin:16px 0;">
+      <div class="fl" style="margin-bottom:8px;">💵 ¿Cuánto contaste en efectivo?</div>
+      <input class="inp ctr" type="number" id="corte-contado" placeholder="0" style="font-size:20px;font-weight:700;text-align:center;">
+      <div id="corte-dif-preview" style="text-align:center;margin-top:8px;font-size:13px;color:var(--ink3);">Escribe el monto para ver la diferencia</div>
+    </div>
+    <div class="act2" style="margin-top:4px;">
+      <button class="btn-s" onclick="this.closest('.corte-modal-overlay').remove()">Cancelar</button>
+      <button class="btn-p" id="corte-confirmar">Confirmar corte</button>
+    </div>
+  </div>`;
+  document.body.appendChild(overlay);
+
+  // Live diff preview
+  document.getElementById('corte-contado').addEventListener('input',e=>{
+    const contado=parseFloat(e.target.value)||0;
+    const dif=contado-efectivoEsperado;
+    const el=document.getElementById('corte-dif-preview');
+    if(e.target.value===''){el.textContent='Escribe el monto para ver la diferencia';el.style.color='var(--ink3)';return;}
+    if(dif===0){el.textContent='✅ Cuadra perfecto';el.style.color='var(--green)';}
+    else if(dif>0){el.textContent=`⬆️ Sobran $${dif.toLocaleString('es-MX')}`;el.style.color='var(--green)';}
+    else{el.textContent=`⬇️ Faltan $${Math.abs(dif).toLocaleString('es-MX')}`;el.style.color='var(--red)';}
+  });
+
+  // Confirmar
+  document.getElementById('corte-confirmar').addEventListener('click',async()=>{
+    const contado=parseFloat(document.getElementById('corte-contado').value)||0;
+    const corteDoc={
+      fecha:new Date().toISOString(),
+      periodoLabel,
+      totalPeriodo,
+      efectivoEsperado,
+      bancoEsperado,
+      contado,
+      diferencia:contado-efectivoEsperado,
+      pedidos:pedidosPeriodo.length,
+    };
+    try{
+      await setDoc(doc(db,'cortes',Date.now().toString()),corteDoc);
+      cortesData.unshift({...corteDoc,id:Date.now().toString()});
+      renderCortesHist();
+      overlay.remove();
+      toast('<strong>Corte guardado!</strong> La caja empieza de nuevo.');
+      renderInicio();
+    }catch(e){toast('Error al guardar el corte.');}
+  });
+
+  // Cerrar al tocar overlay
+  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
+};
+
+// ── FILTRO PERÍODO LISTENERS ──
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.pf-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      periodoFiltro=btn.dataset.pf;
+      const customWrap=document.getElementById('pf-custom-wrap');
+      if(customWrap) customWrap.style.display=periodoFiltro==='custom'?'block':'none';
+      if(periodoFiltro!=='custom') renderHistFiltrado();
+    });
+  });
+});
+
 // ── INIT ──
 async function init(){
   await loadGastos();
@@ -2807,6 +3221,8 @@ async function init(){
     try { await navigator.serviceWorker.register('./sw.js'); } catch(e){}
   }
   await loadPrices();
+  await loadCustomProds();
+  await loadCortes();
   initListeners();
   await initNotifications();
   addDesign();
